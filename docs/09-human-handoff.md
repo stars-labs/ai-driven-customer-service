@@ -20,7 +20,7 @@ AI customer service fails when it **refuses to escalate**. Customers who can't r
 ```mermaid
 flowchart TB
     subgraph Triggers["Escalation Triggers"]
-        T1[Confidence Score<br/>< 0.7]
+        T1[Confidence Score<br/>below 0.7]
         T2[Sentiment Analysis<br/>frustrated / angry]
         T3[Repeat Contact<br/>3+ attempts same issue]
         T4[Explicit Request<br/>"talk to human"]

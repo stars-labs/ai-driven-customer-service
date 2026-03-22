@@ -45,7 +45,7 @@ flowchart TB
     Channels --> Router
     Router -->|高置信度| AI_Core
     Router -->|低置信度| Human_Loop
-    AI_Core -->|置信度 < 阈值| Human_Loop
+    AI_Core -->|置信度低于阈值| Human_Loop
     Human_Loop --> Backend
     AI_Core --> Backend
 ```

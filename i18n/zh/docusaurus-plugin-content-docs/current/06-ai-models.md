@@ -39,7 +39,7 @@ flowchart TB
     Q1 -->|严格本地部署| SelfHost[私有化部署<br/>Llama / Mistral]
     Q1 -->|标准 API 即可| Q2{业务量？}
 
-    Q2 -->|< 100K 消息/月| Q3{质量优先？}
+    Q2 -->|低于 100K 消息/月| Q3{质量优先？}
     Q2 -->|> 100K 消息/月| Q4{预算？}
 
     Q3 -->|最高质量| GPT4[GPT-4o / Claude Sonnet]

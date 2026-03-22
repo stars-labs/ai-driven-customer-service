@@ -45,7 +45,7 @@ flowchart TB
     Channels --> Router
     Router -->|High confidence| AI_Core
     Router -->|Low confidence| Human_Loop
-    AI_Core -->|Confidence < threshold| Human_Loop
+    AI_Core -->|confidence below threshold| Human_Loop
     Human_Loop --> Backend
     AI_Core --> Backend
 ```

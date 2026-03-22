@@ -39,7 +39,7 @@ flowchart TB
     Q1 -->|Strict<br/>on-premise| SelfHost[Self-Hosted<br/>Llama / Mistral]
     Q1 -->|Standard<br/>API OK| Q2{Volume?}
 
-    Q2 -->|< 100K msgs/mo| Q3{Quality Priority?}
+    Q2 -->|under 100K msgs/mo| Q3{Quality Priority?}
     Q2 -->|> 100K msgs/mo| Q4{Budget?}
 
     Q3 -->|Max Quality| GPT4[GPT-4o / Claude Sonnet]
