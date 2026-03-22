@@ -3,62 +3,62 @@ sidebar_position: 13
 title: 知识库工程
 ---
 
-# Knowledge Base Engineering
+# 知识库工程 (Knowledge Base Engineering)
 
-The knowledge base is the brain of your AI CS system. Its quality directly determines response quality.
+知识库是 AI 客服系统的“大脑”。它的质量直接决定了回复的质量。
 
-## The KB Quality Equation
+## 知识库质量等式
 
 ```
-AI Response Quality ≤ Knowledge Base Quality
+AI 回复质量 ≤ 知识库质量
 ```
 
-No amount of prompt engineering or model sophistication can compensate for a poor knowledge base.
+再多的提示词工程 (Prompt Engineering) 或模型复杂性都无法弥补低质量的知识库。
 
-## KB Architecture
+## 知识库架构 (KB Architecture)
 
 ```mermaid
 flowchart TB
-    subgraph Sources["Content Sources"]
-        S1[Help Center<br/>FAQ, How-To]
-        S2[Product Docs<br/>features, API]
-        S3[Policies<br/>refund, shipping]
-        S4[Past Tickets<br/>resolutions]
-        S5[Internal Docs<br/>procedures]
+    subgraph Sources["内容来源"]
+        S1[帮助中心<br/>常见问题解答, 操作指南]
+        S2[产品文档<br/>功能介绍, API]
+        S3[政策文件<br/>退款, 物流]
+        S4[历史工单<br/>解决方案]
+        S5[内部文档<br/>操作流程]
     end
 
-    subgraph Pipeline["Processing Pipeline"]
-        P1[Ingest]
-        P2[Clean & Normalize]
-        P3[Chunk]
-        P4[Embed]
-        P5[Index]
+    subgraph Pipeline["处理流水线"]
+        P1[摄取]
+        P2[清洗与规范化]
+        P3[分块]
+        P4[嵌入]
+        P5[索引]
     end
 
-    subgraph Storage["Storage Layer"]
-        V[(Vector DB)]
-        K[(Keyword Index)]
-        M[(Metadata Store)]
+    subgraph Storage["存储层"]
+        V[(向量数据库)]
+        K[(关键词索引)]
+        M[(元数据存储)]
     end
 
     Sources --> Pipeline
     Pipeline --> Storage
 ```
 
-## Content Source Priority
+## 内容来源优先级
 
-| Source | Value | Effort | Priority |
+| 来源 | 价值 | 投入成本 | 优先级 |
 |---|---|---|---|
-| Help center / FAQ | Very High | Low | Start here |
-| Product documentation | High | Medium | Phase 1 |
-| Policy documents | High | Low | Phase 1 |
-| Past ticket resolutions | High | High | Phase 2 |
-| Community forums | Medium | Medium | Phase 3 |
-| Internal procedures | Medium | High | Phase 3 |
+| 帮助中心 / 常见问题解答 (FAQ) | 极高 | 低 | 从这里开始 |
+| 产品文档 | 高 | 中 | 第一阶段 |
+| 政策文件 | 高 | 低 | 第一阶段 |
+| 历史工单解决方案 | 高 | 高 | 第二阶段 |
+| 社区论坛 | 中 | 中 | 第三阶段 |
+| 内部操作流程 | 中 | 高 | 第三阶段 |
 
-## Content Preparation
+## 内容准备
 
-### From Help Center
+### 从帮助中心摄取
 
 ```python
 import requests
@@ -105,7 +105,7 @@ class HelpCenterIngestor:
         return content.get_text(separator='\n', strip=True)
 ```
 
-### From Past Tickets
+### 从历史工单提取
 
 ```python
 class TicketExtractor:
@@ -152,9 +152,9 @@ class TicketExtractor:
         return documents
 ```
 
-## Chunking Best Practices
+## 分块 (Chunking) 最佳实践
 
-### Semantic Chunking for CS
+### 针对客服场景的语义分块
 
 ```python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -177,19 +177,19 @@ def create_cs_chunker() -> RecursiveCharacterTextSplitter:
     )
 ```
 
-### Chunk Quality Checklist
+### 分块质量检查清单
 
-| Criterion | Good Chunk | Bad Chunk |
+| 标准 | 优质分块 | 劣质分块 |
 |---|---|---|
-| Completeness | Contains full answer to one question | Splits mid-instruction |
-| Self-contained | Understandable without neighbors | Requires context from other chunks |
-| Size | 200–600 tokens | > 1000 tokens or < 50 tokens |
-| Metadata | Has source, category, date | No metadata |
-| Structure | Clear topic, complete thought | Random fragment |
+| 完整性 | 包含一个问题的完整答案 | 在指令中间断开 |
+| 独立性 | 无需上下文即可理解 | 需要其他分块的上下文 |
+| 大小 | 200–600 个 Token (标记) | > 1000 个 Token 或 < 50 个 Token |
+| 元数据 | 包含来源、类别、日期 | 无元数据 |
+| 结构 | 主题明确，思想完整 | 随机片段 |
 
-## Metadata Strategy
+## 元数据策略 (Metadata Strategy)
 
-Every chunk should be enriched with metadata for filtered retrieval:
+每个分块都应丰富元数据，以便进行过滤检索：
 
 ```python
 def enrich_metadata(chunk: Chunk, source_doc: Document) -> Chunk:
@@ -218,28 +218,28 @@ def enrich_metadata(chunk: Chunk, source_doc: Document) -> Chunk:
     return chunk
 ```
 
-## KB Maintenance
+## 知识库维护
 
-### Freshness Monitoring
+### 新鲜度监控
 
 ```mermaid
 flowchart TB
-    subgraph Monitor["Freshness Monitoring"]
-        M1[Track doc updates]
-        M2[Detect stale content]
-        M3[Flag contradictions]
+    subgraph Monitor["新鲜度监控"]
+        M1[跟踪文档更新]
+        M2[检测陈旧内容]
+        M3[标记矛盾内容]
     end
 
-    subgraph Actions["Maintenance Actions"]
-        A1[Auto-reindex on update]
-        A2[Alert on stale content]
-        A3[Human review conflicts]
+    subgraph Actions["维护操作"]
+        A1[更新时自动重新索引]
+        A2[陈旧内容警报]
+        A3[人工审核冲突]
     end
 
     Monitor --> Actions
 ```
 
-### Staleness Detection
+### 陈旧度检测
 
 ```python
 class KBFreshnessMonitor:
@@ -273,7 +273,7 @@ class KBFreshnessMonitor:
         return alerts
 ```
 
-### Contradiction Detection
+### 矛盾检测
 
 ```python
 async def detect_contradictions(chunks: list[Chunk]) -> list[Contradiction]:
@@ -308,30 +308,30 @@ If there are contradictions, list them. If all passages are consistent, say "No 
     return contradictions
 ```
 
-## KB Quality Metrics
+## 知识库质量指标
 
-| Metric | Target | How to Measure |
+| 指标 | 目标 | 如何衡量 |
 |---|---|---|
-| Coverage | > 90% of ticket categories | Map chunks to ticket categories |
-| Freshness | < 90 days average age | Track last_updated dates |
-| Accuracy | > 98% | Human review + customer feedback |
-| Completeness | Full answers, not fragments | Review chunk boundaries |
-| No contradictions | 0 conflicts | Automated detection |
+| 覆盖率 | > 90% 的工单类别 | 将分块映射到工单类别 |
+| 新鲜度 | 平均时长 < 90 天 | 跟踪 last_updated 日期 |
+| 准确性 | > 98% | 人工审核 + 客户反馈 |
+| 完整性 | 完整回答，而非片段 | 审核分块边界 |
+| 无矛盾 | 0 冲突 | 自动检测 |
 
-## KB Update Workflow
+## 知识库更新工作流
 
 ```mermaid
 flowchart LR
-    A[Product Change] --> B[Update Source Doc]
-    B --> C[Auto-trigger Reindex]
-    C --> D[Re-chunk + Re-embed]
-    D --> E[Quality Check]
-    E -->|Pass| F[Deploy to Production]
-    E -->|Fail| G[Flag for Review]
-    G --> H[Human Fixes]
+    A[产品变更] --> B[更新源文档]
+    B --> C[自动触发重新索引]
+    C --> D[重新分块 + 重新嵌入]
+    D --> E[质量检查]
+    E -->|通过| F[部署到生产环境]
+    E -->|失败| G[标记待审核]
+    G --> H[人工修复]
     H --> C
 ```
 
-## What's Next
+## 下一步
 
-With your knowledge base built, let's set up [monitoring and evaluation](./monitoring-eval) to track performance and continuously improve.
+知识库构建完成后，让我们设置 [监控与评估](./monitoring-eval) 来跟踪性能并持续改进。

@@ -3,190 +3,190 @@ sidebar_position: 6
 title: 投资回报框架
 ---
 
-# ROI Framework & Calculator
+# 投资回报率 (ROI) 框架与计算器
 
-A structured approach to calculating return on investment for AI customer service, with formulas you can plug your own numbers into.
+一个用于计算 AI 客服投资回报率的结构化方法，包含您可以代入自己数据的公式。
 
-## ROI Formula
+## ROI 公式
 
 ```
-ROI = (Annual Savings - Annual AI Costs - Setup Costs amortized) / Total Investment × 100
+ROI = (年度节省 - 年度 AI 成本 - 启动成本摊销) / 总投资 × 100
 
-Where:
-  Annual Savings = (Current cost per ticket - AI cost per ticket) × Annual tickets
-  Annual AI Costs = API + Infrastructure + KB maintenance + QA + Human escalation
-  Setup Costs amortized = Total setup / Expected lifespan (typically 3-5 years)
+其中：
+  年度节省 = (当前每张工单成本 - AI 每张工单成本) × 年度工单量
+  年度 AI 成本 = API + 基础设施 + 知识库维护 + 质量保证 (QA) + 人工升级
+  启动成本摊销 = 总启动成本 / 预期寿命（通常为 3-5 年）
 ```
 
-## Quick ROI Calculator
+## 快速 ROI 计算器
 
-### Input Your Numbers
+### 输入您的数据
 
-| Input | Your Value | Example |
+| 输入项 | 您的数值 | 示例 |
 |---|---|---|
-| Monthly ticket volume | _____ | 10,000 |
-| Current cost per ticket | $_____ | $10 |
-| % Tier 1 tickets (AI-handleable) | ____% | 50% |
-| Target AI resolution rate | ____% | 80% |
-| Chosen model | _____ | Hybrid |
+| 每月工单量 | _____ | 10,000 |
+| 当前每张工单成本 | $_____ | $10 |
+| 1 级工单占比（AI 可处理） | ____% | 50% |
+| 目标 AI 解决率 | ____% | 80% |
+| 选择的模型 | _____ | 混合模型 |
 
-### Calculation Template
+### 计算模板
 
 ```python
-# Quick ROI Calculator
+# 快速 ROI 计算器 (Quick ROI Calculator)
 
-# YOUR INPUTS
+# 您的输入 (YOUR INPUTS)
 monthly_tickets = 10_000
 current_cost_per_ticket = 10.00
-tier1_percentage = 0.50  # 50% of tickets are simple
-ai_resolution_rate = 0.80  # AI resolves 80% of Tier 1
+tier1_percentage = 0.50  # 50% 的工单是简单的
+ai_resolution_rate = 0.80  # AI 解决 80% 的 1 级工单
 
-# DERIVED
+# 衍生数据 (DERIVED)
 annual_tickets = monthly_tickets * 12
 current_annual_cost = annual_tickets * current_cost_per_ticket
 
-# AI COSTS (Hybrid model)
+# AI 成本 (AI COSTS - 混合模型)
 ai_resolved_tickets = annual_tickets * tier1_percentage * ai_resolution_rate
 human_tickets = annual_tickets - ai_resolved_tickets
 
-ai_processing_cost = ai_resolved_tickets * 0.20  # $0.20 per AI ticket
-human_cost = human_tickets * 8.00  # $8 per human-handled ticket
-infrastructure_cost = 50_000  # Annual fixed
-kb_maintenance = 30_000  # Annual
-qa_oversight = 25_000  # Annual
-setup_cost = 100_000  # One-time
-setup_amortized = setup_cost / 3  # Amortized over 3 years
+ai_processing_cost = ai_resolved_tickets * 0.20  # 每张 AI 工单 0.20 美元
+human_cost = human_tickets * 8.00  # 每张人工处理工单 8 美元
+infrastructure_cost = 50_000  # 年度固定成本
+kb_maintenance = 30_000  # 年度维护
+qa_oversight = 25_000  # 年度监管
+setup_cost = 100_000  # 一次性启动成本
+setup_amortized = setup_cost / 3  # 按 3 年摊销
 
 ai_annual_cost = (ai_processing_cost + human_cost + infrastructure_cost + 
                   kb_maintenance + qa_oversight + setup_amortized)
 
-# RESULTS
+# 结果 (RESULTS)
 annual_savings = current_annual_cost - ai_annual_cost
 roi = (annual_savings - setup_amortized) / setup_cost * 100
 payback_months = setup_cost / (annual_savings / 12)
 
-print(f"Current annual cost: ${current_annual_cost:,.0f}")
-print(f"AI annual cost: ${ai_annual_cost:,.0f}")
-print(f"Annual savings: ${annual_savings:,.0f}")
-print(f"ROI (Year 1): {roi:.0f}%")
-print(f"Payback period: {payback_months:.1f} months")
+print(f"当前年度成本: ${current_annual_cost:,.0f}")
+print(f"AI 年度成本: ${ai_annual_cost:,.0f}")
+print(f"年度节省: ${annual_savings:,.0f}")
+print(f"ROI (第 1 年): {roi:.0f}%")
+print(f"回报周期: {payback_months:.1f} 个月")
 ```
 
-## Scenario Analysis
+## 场景分析
 
-### Scenario 1: Small SaaS (10K tickets/month)
+### 场景 1：小型 SaaS（每月 1 万张工单）
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---|
-| Annual tickets | 120,000 |
-| Current annual cost | $1.2M |
-| AI annual cost (Hybrid) | $380K |
-| Annual savings | $820K |
-| Setup cost | $100K |
-| ROI (Year 1) | 720% |
-| Payback period | 1.5 months |
+| 年度工单量 | 120,000 |
+| 当前年度成本 | $1.2M |
+| AI 年度成本（混合模型） | $380K |
+| 年度节省 | $820K |
+| 启动成本 | $100K |
+| ROI（第 1 年） | 720% |
+| 回报周期 | 1.5 个月 |
 
-### Scenario 2: Mid-Market E-commerce (50K tickets/month)
+### 场景 2：中型电商（每月 5 万张工单）
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---|
-| Annual tickets | 600,000 |
-| Current annual cost | $6.0M |
-| AI annual cost (AI-First) | $720K |
-| Annual savings | $5.28M |
-| Setup cost | $250K |
-| ROI (Year 1) | 2,012% |
-| Payback period | 0.6 months |
+| 年度工单量 | 600,000 |
+| 当前年度成本 | $6.0M |
+| AI 年度成本（AI 优先模型） | $720K |
+| 年度节省 | $5.28M |
+| 启动成本 | $250K |
+| ROI（第 1 年） | 2,012% |
+| 回报周期 | 0.6 个月 |
 
-### Scenario 3: Enterprise (200K tickets/month)
+### 场景 3：大型企业（每月 20 万张工单）
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---|
-| Annual tickets | 2,400,000 |
-| Current annual cost | $24M |
-| AI annual cost (AI-First) | $1.8M |
-| Annual savings | $22.2M |
-| Setup cost | $500K |
-| ROI (Year 1) | 4,340% |
-| Payback period | 0.3 months |
+| 年度工单量 | 2,400,000 |
+| 当前年度成本 | $24M |
+| AI 年度成本（AI 优先模型） | $1.8M |
+| 年度节省 | $22.2M |
+| 启动成本 | $500K |
+| ROI（第 1 年） | 4,340% |
+| 回报周期 | 0.3 个月 |
 
-## Sensitivity Matrix
+## 敏感性矩阵
 
-How ROI changes with different variables:
+ROI 随不同变量的变化情况：
 
-| Tier 1 % ↓ / Resolution Rate → | 60% | 70% | 80% | 90% |
+| 1 级工单占比 ↓ / 解决率 → | 60% | 70% | 80% | 90% |
 |---|---|---|---|---|
 | **40%** | 180% | 220% | 260% | 300% |
 | **50%** | 240% | 290% | 340% | 390% |
 | **60%** | 300% | 360% | 420% | 480% |
 | **70%** | 360% | 430% | 500% | 570% |
 
-*ROI values are illustrative for 10K tickets/month at $10/ticket baseline*
+*ROI 数值为每月 1 万张工单、每张工单 10 美元基准下的说明性数据*
 
-## Non-Financial ROI
+## 非财务性 ROI
 
-Some benefits are harder to quantify but equally important:
+某些收益较难量化，但同样重要：
 
-| Benefit | Measurement | Impact |
+| 收益 | 衡量指标 | 影响 |
 |---|---|---|
-| Customer satisfaction | CSAT score | +0.3–0.5 points |
-| Response time | First response SLA | 24 hours → < 1 minute |
-| Agent satisfaction | Employee NPS | +15–25 points (less monotony) |
-| Consistency | QA variance | -60% variance in response quality |
-| Scalability | Capacity ceiling | None (vs 3x cost for 24/7) |
-| Data insights | Ticket analytics | Automated categorization & trends |
+| 客户满意度 | CSAT 分数 | +0.3–0.5 分 |
+| 响应时间 | 首次响应 SLA | 24 小时 → < 1 分钟 |
+| 客服满意度 | 员工净推荐值 (eNPS) | +15–25 分（减少枯燥重复工作） |
+| 一致性 | 质量保证 (QA) 偏差 | 响应质量偏差减少 60% |
+| 可扩展性 | 容量上限 | 无（对比 24/7 全天候服务需 3 倍成本） |
+| 数据洞察 | 工单分析 | 自动化分类与趋势分析 |
 
-## Risk-Adjusted ROI
+## 风险调整后的 ROI
 
-Factor in implementation risks:
+考虑实施风险：
 
-| Risk | Probability | Impact on ROI | Adjusted ROI |
+| 风险 | 概率 | 对 ROI 的影响 | 调整后的 ROI |
 |---|---|---|---|
-| Lower than expected resolution rate | 20% | -30% savings | Apply 0.7x multiplier |
-| Higher KB maintenance costs | 15% | -15% savings | Apply 0.85x multiplier |
-| Integration delays | 25% | +3 months payback | Delay savings start |
-| Customer resistance | 10% | -10% volume | Apply 0.9x multiplier |
+| 解决率低于预期 | 20% | 节省减少 30% | 应用 0.7 倍系数 |
+| 知识库维护成本更高 | 15% | 节省减少 15% | 应用 0.85 倍系数 |
+| 集成延迟 | 25% | 回报周期增加 3 个月 | 延迟节省开始时间 |
+| 客户抵触 | 10% | 工单量减少 10% | 应用 0.9 倍系数 |
 
-**Risk-adjusted expected ROI**: Multiply calculated ROI by 0.75 (conservative) to 0.85 (moderate).
+**风险调整后的预期 ROI**：将计算出的 ROI 乘以 0.75（保守）至 0.85（稳健）。
 
-## Build the Business Case
+## 构建业务案例
 
-### Executive Summary Template
+### 执行摘要模板
 
 ```
-AI Customer Service Business Case
+AI 客服业务案例 (AI Customer Service Business Case)
 
-PROBLEM:
-- Current CS costs: $[X]M annually
-- Ticket volume growing [Y]% annually
-- Customer expectations rising (response time, 24/7)
+问题：
+- 当前客服成本：每年 $[X]M
+- 工单量每年增长 [Y]%
+- 客户期望提高（响应时间、24/7 全天候服务）
 
-SOLUTION:
-- Implement [Hybrid/AI-First] AI customer service
-- Automate [Z]% of Tier 1 tickets
-- Maintain human agents for complex issues
+解决方案：
+- 实施 [混合/AI 优先] AI 客服
+- 自动化 [Z]% 的 1 级工单
+- 保留人工客服处理复杂问题
 
-FINANCIAL IMPACT:
-- Setup investment: $[A]
-- Annual savings: $[B]
-- Payback period: [C] months
-- 3-year ROI: [D]%
+财务影响：
+- 启动投资：$[A]
+- 年度节省：$[B]
+- 回报周期：[C] 个月
+- 3 年 ROI：[D]%
 
-NON-FINANCIAL BENEFITS:
-- Response time: [current] → < 1 minute
-- 24/7 coverage without headcount increase
-- Consistent quality across all interactions
-- Scalable to [X]x volume without cost increase
+非财务收益：
+- 响应时间：[当前] → < 1 分钟
+- 无需增加人员即可实现 24/7 全天候覆盖
+- 所有交互中保持一致的质量
+- 可扩展至 [X] 倍工单量而无需增加成本
 
-RISKS & MITIGATIONS:
-- [Risk 1]: [Mitigation]
-- [Risk 2]: [Mitigation]
+风险与缓解措施：
+- [风险 1]：[缓解措施]
+- [风险 2]：[缓解措施]
 
-RECOMMENDATION:
-- Phase 1: [Scope] over [Timeline]
-- Phase 2: Expand based on Phase 1 results
+建议：
+- 第一阶段：[范围]，耗时 [时间线]
+- 第二阶段：根据第一阶段结果进行扩展
 ```
 
-## What's Next
+## 下一步
 
-To see these numbers validated against real implementations, review the [Case Studies](./case-studies) from companies that have already made the transition.
+要查看这些数据在实际实施中的验证情况，请查看已完成转型的公司的 [案例研究](./case-studies)。

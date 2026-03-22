@@ -3,83 +3,83 @@ sidebar_position: 9
 title: RAG 架构
 ---
 
-# RAG Architecture for Customer Service
+# 客户服务的 RAG 架构
 
-Retrieval-Augmented Generation (RAG) is the core pattern for AI customer service — retrieve relevant knowledge, then generate accurate answers.
+检索增强生成 (Retrieval-Augmented Generation, RAG) 是 AI 客户服务 (Customer Service, CS) 的核心模式 —— 检索相关知识，然后生成准确的答案。
 
-## Why RAG for CS?
+## 为什么在 CS 中使用 RAG？
 
-| Challenge | How RAG Solves It |
+| 挑战 | RAG 如何解决 |
 |---|---|
-| LLMs hallucinate facts | Grounds answers in your actual documentation |
-| Knowledge changes frequently | Update KB without retraining |
-| Need source attribution | Retrieved chunks = citations |
-| Domain-specific terminology | Your docs contain your terms |
-| Compliance requirements | Answers traceable to approved sources |
+| LLM (大语言模型) 事实幻觉 | 将答案建立在您的实际文档基础上 |
+| 知识更新频繁 | 无需重新训练即可更新 KB (知识库) |
+| 需要来源归属 | 检索到的分块 = 引用 |
+| 特定领域的术语 | 您的文档包含您的术语 |
+| 合规性要求 | 答案可追溯到经过批准的来源 |
 
-## Architecture Overview
+## 架构概览
 
 ```mermaid
 flowchart TB
-    subgraph Ingestion["Knowledge Ingestion"]
-        S1[Help Center Articles]
-        S2[Product Docs]
-        S3[Past Tickets]
-        S4[Policies]
-        S1 --> C[Chunking]
+    subgraph Ingestion["知识摄取"]
+        S1[帮助中心文章]
+        S2[产品文档]
+        S3[历史工单]
+        S4[政策]
+        S1 --> C[分块]
         S2 --> C
         S3 --> C
         S4 --> C
-        C --> E[Embedding]
-        E --> V[(Vector DB)]
+        C --> E[嵌入]
+        E --> V[(向量 DB)]
     end
 
-    subgraph Query["Query Pipeline"]
-        Q[Customer Question] --> QE[Embed Query]
-        QE --> VS[Vector Search]
+    subgraph Query["查询流水线"]
+        Q[客户问题] --> QE[嵌入查询]
+        QE --> VS[向量搜索]
         V --> VS
-        VS --> RR[Rerank]
-        RR --> CA[Context Assembly]
-        CA --> LLM[LLM Generate]
-        LLM --> R[Response]
+        VS --> RR[重排序]
+        RR --> CA[上下文组装]
+        CA --> LLM[LLM 生成]
+        LLM --> R[响应]
     end
 ```
 
-## Knowledge Ingestion Pipeline
+## 知识摄取流水线
 
-### Step 1: Content Sources
+### 第 1 步：内容来源
 
-| Source | Format | Update Frequency | Priority |
+| 来源 | 格式 | 更新频率 | 优先级 |
 |---|---|---|---|
-| Help center | HTML/Markdown | Weekly | High |
-| Product documentation | Markdown/RST | On release | High |
-| Past ticket resolutions | Database export | Daily | Medium |
-| Policy documents | PDF/Word | Quarterly | Medium |
-| Community forums | HTML | Real-time | Low |
+| 帮助中心 | HTML/Markdown | 每周 | 高 |
+| 产品文档 | Markdown/RST | 发布时 | 高 |
+| 历史工单处理结果 | 数据库导出 | 每日 | 中 |
+| 政策文件 | PDF/Word | 每季度 | 中 |
+| 社区论坛 | HTML | 实时 | 低 |
 
-### Step 2: Chunking Strategies
+### 第 2 步：分块策略
 
-How you split documents matters enormously for retrieval quality:
+如何拆分文档对检索质量至关重要：
 
 ```mermaid
 flowchart TB
-    subgraph Strategies["Chunking Strategies"]
+    subgraph Strategies["分块策略"]
         direction TB
-        F1[Fixed-size<br/>500 tokens, 50 overlap]
-        F2[Semantic<br/>split by meaning]
-        F3[Recursive<br/>header → paragraph → sentence]
-        F4[Document-aware<br/>respect structure]
+        F1[固定大小<br/>500 token，50 重叠]
+        F2[语义<br/>按含义拆分]
+        F3[递归<br/>标题 → 段落 → 句子]
+        F4[文档感知<br/>尊重结构]
     end
 
-    subgraph Tradeoffs["Tradeoffs"]
-        T1[Fixed: Simple but breaks context]
-        T2[Semantic: Best quality, slower]
-        T3[Recursive: Good balance]
-        T4[Aware: Best for structured docs]
+    subgraph Tradeoffs["权衡"]
+        T1[固定：简单但会破坏上下文]
+        T2[语义：质量最好，速度较慢]
+        T3[递归：良好的平衡]
+        T4[感知：最适合结构化文档]
     end
 ```
 
-**Recommended approach for CS:**
+**推荐的 CS 处理方法：**
 
 ```python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -98,48 +98,48 @@ splitter = RecursiveCharacterTextSplitter(
 )
 ```
 
-### Step 3: Metadata Enrichment
+### 第 3 步：元数据丰富
 
-Every chunk should carry metadata for filtered search:
+每个分块都应携带元数据以便进行过滤搜索：
 
-| Metadata Field | Example | Purpose |
+| 元数据字段 | 示例 | 用途 |
 |---|---|---|
-| `source` | "help-center" | Filter by source type |
-| `product` | "billing" | Product-specific search |
-| `section` | "refunds" | Hierarchical context |
-| `last_updated` | "2024-01-15" | Freshness scoring |
-| `version` | "v2.3" | Version-specific answers |
-| `language` | "en" | Multilingual routing |
+| `source` | "help-center" | 按来源类型过滤 |
+| `product` | "billing" | 特定产品的搜索 |
+| `section` | "refunds" | 层级上下文 |
+| `last_updated` | "2024-01-15" | 新鲜度评分 |
+| `version` | "v2.3" | 特定版本的答案 |
+| `language` | "en" | 多语言路由 |
 
-### Step 4: Vector Database Selection
+### 第 4 步：向量数据库选择
 
-| Database | Type | Managed | Best For |
+| 数据库 | 类型 | 托管 | 最适合 |
 |---|---|---|---|
-| Pinecone | Purpose-built | ✅ | Easy setup, good performance |
-| Weaviate | Purpose-built | ✅/Self | Hybrid search, GraphQL |
-| Qdrant | Purpose-built | ✅/Self | Performance, filtering |
-| pgvector | PostgreSQL ext. | ✅ | Already have Postgres |
-| Chroma | Embedded | Self | Prototyping, small scale |
-| Milvus | Purpose-built | ✅/Self | Enterprise scale |
+| Pinecone | 专用 | ✅ | 设置简单，性能良好 |
+| Weaviate | 专用 | ✅/自建 | 混合搜索，GraphQL |
+| Qdrant | 专用 | ✅/自建 | 性能，过滤 |
+| pgvector | PostgreSQL 扩展 | ✅ | 已有 Postgres |
+| Chroma | 嵌入式 | 自建 | 原型设计，小规模 |
+| Milvus | 专用 | ✅/自建 | 企业级规模 |
 
-:::tip Start Simple
-For most CS use cases, **Pinecone** (managed) or **pgvector** (if you already use Postgres) is the right choice. Don't over-engineer the vector DB selection.
+:::tip 从简单开始
+对于大多数 CS 用例，**Pinecone** (托管) 或 **pgvector** (如果您已经在使用 Postgres) 是正确的选择。不要在向量 DB (数据库) 的选择上过度设计。
 :::
 
-## Query Pipeline
+## 查询流水线
 
-### Step 1: Query Processing
+### 第 1 步：查询处理
 
 ```mermaid
 flowchart LR
-    Q[Raw Query] --> L[Language Detect]
-    L --> I[Intent Classify]
-    I --> E[Expand Query]
-    E --> V[Vectorize]
-    V --> S[Search]
+    Q[原始查询] --> L[语言检测]
+    L --> I[意图分类]
+    I --> E[扩展查询]
+    E --> V[向量化]
+    V --> S[搜索]
 ```
 
-**Query expansion** improves recall:
+**查询扩展**可以提高召回率：
 
 ```python
 def expand_query(query: str, intent: str) -> list[str]:
@@ -157,9 +157,9 @@ def expand_query(query: str, intent: str) -> list[str]:
     return queries
 ```
 
-### Step 2: Hybrid Search
+### 第 2 步：混合搜索
 
-Combine vector search with keyword search for best results:
+结合向量搜索和关键字搜索以获得最佳结果：
 
 ```python
 def hybrid_search(query: str, top_k: int = 5) -> list[Chunk]:
@@ -181,9 +181,9 @@ def hybrid_search(query: str, top_k: int = 5) -> list[Chunk]:
     return combined[:top_k]
 ```
 
-### Step 3: Reranking
+### 第 3 步：重排序
 
-Cross-encoder reranking improves precision:
+交叉编码器 (Cross-encoder) 重排序可提高精度：
 
 ```python
 from sentence_transformers import CrossEncoder
@@ -198,7 +198,7 @@ def rerank(query: str, chunks: list[Chunk], top_k: int = 3) -> list[Chunk]:
     return [chunk for chunk, score in ranked[:top_k]]
 ```
 
-### Step 4: Context Assembly
+### 第 4 步：上下文组装
 
 ```python
 def assemble_context(
@@ -231,56 +231,56 @@ def assemble_context(
 """
 ```
 
-## Quality Optimization
+## 质量优化
 
-### Retrieval Metrics
+### 检索指标
 
-| Metric | Target | How to Measure |
+| 指标 | 目标 | 如何衡量 |
 |---|---|---|
-| Recall@5 | > 90% | % of queries where answer is in top 5 chunks |
-| Precision@3 | > 70% | % of retrieved chunks that are relevant |
-| MRR (Mean Reciprocal Rank) | > 0.8 | Average position of first relevant chunk |
-| Latency (p95) | < 200ms | Time from query to retrieved chunks |
+| Recall@5 (召回率) | > 90% | 答案在排名前 5 的分块中的查询百分比 |
+| Precision@3 (精确率) | > 70% | 检索到的分块中相关的百分比 |
+| MRR (平均倒数排名) | > 0.8 | 第一个相关分块的平均位置 |
+| Latency (p95) (延迟) | < 200ms | 从查询到检索到分块的时间 |
 
-### Common Issues & Fixes
+### 常见问题与修复
 
-| Issue | Symptom | Fix |
+| 问题 | 症状 | 修复 |
 |---|---|---|
-| Irrelevant chunks retrieved | Low precision | Better chunking, metadata filtering |
-| Answer in doc but not found | Low recall | Query expansion, hybrid search |
-| Outdated information | Wrong answers | Freshness metadata, regular re-indexing |
-| Chunks too small | Lost context | Increase chunk size, overlap |
-| Chunks too large | Noisy retrieval | Decrease chunk size, better splitting |
+| 检索到无关分块 | 低精确率 | 更好的分块，元数据过滤 |
+| 文档中有答案但未找到 | 低召回率 | 查询扩展，混合搜索 |
+| 信息过时 | 错误的答案 | 新鲜度元数据，定期重新索引 |
+| 分块太小 | 丢失上下文 | 增加分块大小、重叠 |
+| 分块太大 | 检索噪声多 | 减小分块大小，更好的拆分 |
 
-## Production Architecture
+## 生产架构
 
 ```mermaid
 flowchart TB
-    subgraph Realtime["Real-time Path"]
-        Q[Query] --> Cache{Cache Hit?}
-        Cache -->|Yes| R[Return Cached]
-        Cache -->|No| Embed[Embed]
-        Embed --> Search[Hybrid Search]
-        Search --> Rerank[Rerank]
+    subgraph Realtime["实时路径"]
+        Q[查询] --> Cache{缓存命中？}
+        Cache -->|是| R[返回缓存内容]
+        Cache -->|否| Embed[嵌入]
+        Embed --> Search[混合搜索]
+        Search --> Rerank[重排序]
         Rerank --> LLM[LLM]
-        LLM --> Response
-        Response --> Cache2[Cache Result]
+        LLM --> Response[响应]
+        Response --> Cache2[缓存结果]
     end
 
-    subgraph Async["Async Processing"]
-        DocUpdate[Doc Update] --> Reindex[Reindex]
-        Reindex --> VectorDB[(Vector DB)]
-        TicketRes[Ticket Resolved] --> Extract[Extract Pattern]
+    subgraph Async["异步处理"]
+        DocUpdate[文档更新] --> Reindex[重新索引]
+        Reindex --> VectorDB[(向量 DB)]
+        TicketRes[工单已解决] --> Extract[提取模式]
         Extract --> VectorDB
     end
 
-    subgraph Monitor["Monitoring"]
-        VectorDB --> Metrics[Retrieval Metrics]
-        Response --> Quality[Quality Scores]
-        Quality --> Alerts[Alert on Degradation]
+    subgraph Monitor["监控"]
+        VectorDB --> Metrics[检索指标]
+        Response --> Quality[质量评分]
+        Quality --> Alerts[降级告警]
     end
 ```
 
-## What's Next
+## 下一步
 
-With the knowledge retrieval pipeline designed, let's look at [integration patterns](./integration-patterns) — connecting to Zendesk, Intercom, email, and other channels.
+设计好知识检索流水线后，让我们看看 [集成模式](./integration-patterns) —— 连接到 Zendesk、Intercom、电子邮件和其他渠道。

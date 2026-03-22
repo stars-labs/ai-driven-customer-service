@@ -3,154 +3,154 @@ sidebar_position: 8
 title: AI 模型与选择
 ---
 
-# AI Models & Selection Guide
+# AI 模型与选择指南
 
-Choosing the right AI model for customer service — balancing cost, quality, latency, and control.
+为客服选择合适的 AI 模型 —— 平衡成本、质量、延迟和控制力。
 
-## The Model Landscape
+## 模型概览
 
-### Foundation Models (API-based)
+### 基础模型（基于 API）
 
-| Provider | Model | Strengths | Cost (per 1M tokens) | Best For |
+| 提供商 | 模型 | 优势 | 成本（每 1M Token） | 最佳用途 |
 |---|---|---|---|---|
-| OpenAI | GPT-4o | Best overall quality, fast | $2.50–$10 | Complex reasoning, high quality |
-| OpenAI | GPT-4o-mini | Fast, cheap, good enough | $0.15–$0.60 | High-volume Tier 1 |
-| Anthropic | Claude 3.5 Sonnet | Excellent instruction following | $3–$15 | Nuanced responses, safety |
-| Anthropic | Claude 3 Haiku | Fastest, cheapest | $0.25–$1.25 | Real-time chat, high volume |
-| Google | Gemini 1.5 Pro | Long context, multimodal | $1.25–$5 | Multi-document analysis |
-| Google | Gemini 1.5 Flash | Very fast, very cheap | $0.075–$0.30 | Ultra-high volume |
-| Meta | Llama 3.1 70B | Open source, self-hostable | Self-host cost | Full control, privacy |
+| OpenAI | GPT-4o | 综合质量最佳，速度快 | $2.50–$10 | 复杂推理，高质量 |
+| OpenAI | GPT-4o-mini | 快速，廉价，足够好 | $0.15–$0.60 | 高业务量的 1 级工单 |
+| Anthropic | Claude 3.5 Sonnet | 卓越的指令遵循能力 | $3–$15 | 细腻的响应，安全性 |
+| Anthropic | Claude 3 Haiku | 最快，最廉价 | $0.25–$1.25 | 实时聊天，高业务量 |
+| Google | Gemini 1.5 Pro | 长上下文，多模态 | $1.25–$5 | 多文档分析 |
+| Google | Gemini 1.5 Flash | 非常快，非常廉价 | $0.075–$0.30 | 超高业务量 |
+| Meta | Llama 3.1 70B | 开源，可私有化部署 | 私有化部署成本 | 完全控制，隐私 |
 
-### Open Source (Self-Hosted)
+### 开源模型（私有化部署）
 
-| Model | Parameters | Quality | Hardware | Use Case |
+| 模型 | 参数量 | 质量 | 硬件需求 | 使用场景 |
 |---|---|---|---|---|
-| Llama 3.1 | 8B–405B | Very Good | 1–8× A100 | Cost control, privacy |
-| Mistral | 7B–8x22B | Good–Very Good | 1–4× A100 | European data residency |
-| Qwen 2.5 | 7B–72B | Good | 1–4× A100 | Multilingual (Chinese+) |
-| Phi-3 | 3.8B–14B | Good (for size) | 1× A100 or CPU | Edge, on-premise |
+| Llama 3.1 | 8B–405B | 极好 | 1–8× A100 | 成本控制，隐私 |
+| Mistral | 7B–8x22B | 良好至极好 | 1–4× A100 | 欧洲数据驻留要求 |
+| Qwen 2.5 | 7B–72B | 良好 | 1–4× A100 | 多语言（中文增强） |
+| Phi-3 | 3.8B–14B | 良好（相对于其尺寸） | 1× A100 或 CPU | 边缘计算，本地部署 |
 
-## Decision Framework
+## 决策框架
 
 ```mermaid
 flowchart TB
-    Start[Choose Model] --> Q1{Privacy Requirements?}
+    Start[选择模型] --> Q1{隐私要求？}
 
-    Q1 -->|Strict<br/>on-premise| SelfHost[Self-Hosted<br/>Llama / Mistral]
-    Q1 -->|Standard<br/>API OK| Q2{Volume?}
+    Q1 -->|严格本地部署| SelfHost[私有化部署<br/>Llama / Mistral]
+    Q1 -->|标准 API 即可| Q2{业务量？}
 
-    Q2 -->|< 100K msgs/mo| Q3{Quality Priority?}
-    Q2 -->|> 100K msgs/mo| Q4{Budget?}
+    Q2 -->|< 100K 消息/月| Q3{质量优先？}
+    Q2 -->|> 100K 消息/月| Q4{预算？}
 
-    Q3 -->|Max Quality| GPT4[GPT-4o / Claude Sonnet]
-    Q3 -->|Good Enough| Mini[GPT-4o-mini / Haiku]
+    Q3 -->|最高质量| GPT4[GPT-4o / Claude Sonnet]
+    Q3 -->|足够好| Mini[GPT-4o-mini / Haiku]
 
-    Q4 -->|Cost Sensitive| Cheap[Gemini Flash / GPT-4o-mini]
-    Q4 -->|Quality Sensitive| Premium[GPT-4o / Claude Sonnet]
+    Q4 -->|成本敏感| Cheap[Gemini Flash / GPT-4o-mini]
+    Q4 -->|质量敏感| Premium[GPT-4o / Claude Sonnet]
 
-    SelfHost --> FineTune{Need Customization?}
-    FineTune -->|Yes| FT[Fine-tune]
-    FineTune -->|No| Prompt[Prompt Engineering]
+    SelfHost --> FineTune{需要定制？}
+    FineTune -->|是| FT[微调]
+    FineTune -->|否| Prompt[提示词工程]
 ```
 
-## Model Selection Matrix
+## 模型选择矩阵
 
-### By Use Case
+### 按使用场景
 
-| Use Case | Recommended Model | Why |
+| 使用场景 | 推荐模型 | 原因 |
 |---|---|---|
-| FAQ auto-response | GPT-4o-mini / Haiku | Fast, cheap, good at retrieval |
-| Complex troubleshooting | GPT-4o / Claude Sonnet | Needs reasoning, nuance |
-| Multilingual support | GPT-4o / Gemini Pro | Best multilingual coverage |
-| Real-time chat | Haiku / Gemini Flash | Lowest latency |
-| Sensitive data (healthcare) | Self-hosted Llama | Data stays in your infra |
-| Drafting for agent review | GPT-4o-mini | Good quality, low cost |
-| Sentiment analysis | Fine-tuned smaller model | Cheaper than general LLM |
+| 常见问题 (FAQ) 自动响应 | GPT-4o-mini / Haiku | 快速、廉价、擅长检索 |
+| 复杂故障排除 | GPT-4o / Claude Sonnet | 需要推理能力和细腻度 |
+| 多语言支持 | GPT-4o / Gemini Pro | 最佳的多语言覆盖范围 |
+| 实时聊天 | Haiku / Gemini Flash | 最低延迟 |
+| 敏感数据（如医疗保健） | 私有化部署 Llama | 数据保留在您的基础设施中 |
+| 为客服审核草拟回复 | GPT-4o-mini | 质量良好，成本低 |
+| 情感分析 | 微调后的较小模型 | 比通用大语言模型 (LLM) 更便宜 |
 
-### By Priority
+### 按优先级
 
-| Priority | Primary | Secondary |
+| 优先级 | 首选 | 备选 |
 |---|---|---|
-| Lowest cost | Gemini Flash ($0.075/M) | GPT-4o-mini ($0.15/M) |
-| Highest quality | GPT-4o | Claude 3.5 Sonnet |
-| Lowest latency | Claude Haiku | Gemini Flash |
-| Best value | GPT-4o-mini | Claude Haiku |
-| Full control | Llama 3.1 70B | Mistral 8x22B |
-| Best for CS specifically | GPT-4o (fine-tuned) | Claude Sonnet |
+| 最低成本 | Gemini Flash ($0.075/M) | GPT-4o-mini ($0.15/M) |
+| 最高质量 | GPT-4o | Claude 3.5 Sonnet |
+| 最低延迟 | Claude Haiku | Gemini Flash |
+| 最佳性价比 | GPT-4o-mini | Claude Haiku |
+| 完全控制 | Llama 3.1 70B | Mistral 8x22B |
+| 专门针对客服的最佳选择 | GPT-4o（微调后） | Claude Sonnet |
 
-## Fine-Tuning vs RAG
+## 微调 (Fine-Tuning) vs RAG
 
-Two approaches to customizing models for your specific CS needs:
+为您的特定客服需求定制模型的两种方法：
 
-### RAG (Retrieval-Augmented Generation)
+### RAG (检索增强生成)
 
 ```mermaid
 flowchart LR
-    Q[Customer Query] --> E[Embed Query]
-    E --> S[Search Vector DB]
-    S --> R[Retrieve Chunks]
-    R --> C[Assemble Context]
-    C --> L[LLM generates answer]
-    L --> A[Response]
+    Q[客户查询] --> E[向量化查询]
+    E --> S[搜索向量数据库]
+    S --> R[检索文本块]
+    R --> C[组装上下文]
+    C --> L[LLM 生成答案]
+    L --> A[响应]
 ```
 
-| Aspect | RAG |
+| 维度 | RAG |
 |---|---|
-| Setup time | Days–weeks |
-| Data needed | Knowledge base articles |
-| Updates | Real-time (just update KB) |
-| Cost | Low (no training) |
-| Quality | Good for factual recall |
-| Best for | FAQ, documentation lookup |
+| 搭建时间 | 数天至数周 |
+| 所需数据 | 知识库文章 |
+| 更新频率 | 实时（只需更新知识库） |
+| 成本 | 低（无需训练） |
+| 质量 | 擅长事实召回 |
+| 最佳用途 | 常见问题、文档查找 |
 
-### Fine-Tuning
+### 微调 (Fine-Tuning)
 
 ```mermaid
 flowchart LR
-    D[Past Tickets<br/>+ Resolutions] --> P[Format Training Data]
-    P --> T[Fine-tune Model]
-    T --> M[Custom Model]
-    Q[Query] --> M
-    M --> A[Response]
+    D[历史工单<br/>+ 解决方案] --> P[格式化训练数据]
+    P --> T[微调模型]
+    T --> M[定制模型]
+    Q[查询] --> M
+    M --> A[响应]
 ```
 
-| Aspect | Fine-Tuning |
+| 维度 | 微调 (Fine-Tuning) |
 |---|---|
-| Setup time | Weeks–months |
-| Data needed | 1K–100K examples |
-| Updates | Requires retraining |
-| Cost | Higher (training compute) |
-| Quality | Better for tone, style, edge cases |
-| Best for | Consistent brand voice, complex workflows |
+| 搭建时间 | 数周至数月 |
+| 所需数据 | 1,000 至 100,000 个示例 |
+| 更新频率 | 需要重新训练 |
+| 成本 | 较高（训练计算成本） |
+| 质量 | 擅长语气、风格和极端情况 |
+| 最佳用途 | 一致的品牌语调、复杂的工作流 |
 
-### Recommendation
+### 建议
 
-| Situation | Approach |
+| 情况 | 方案 |
 |---|---|
-| Starting out | RAG only |
-| Have 10K+ quality ticket resolutions | RAG + fine-tune for tone |
-| Highly specialized domain | Fine-tune + RAG |
-| Strict brand voice requirements | Fine-tune |
+| 刚开始实施 | 仅使用 RAG |
+| 拥有 1 万个以上高质量工单解决方案 | RAG + 语气微调 |
+| 高度专业领域 | 微调 + RAG |
+| 严格的品牌语调要求 | 微调 |
 
-:::tip Start with RAG
-RAG gets you 80% of the value at 20% of the effort. Fine-tune later when you have data and know what you need.
+:::tip 从 RAG 开始
+RAG 能以 20% 的努力为您带来 80% 的价值。等您有了数据并明确了需求后，再考虑微调。
 :::
 
-## Embedding Models
+## 嵌入模型 (Embedding Models)
 
-For RAG, you need an embedding model to vectorize your knowledge base:
+对于 RAG，您需要一个嵌入模型来将您的知识库向量化：
 
-| Model | Dimensions | Cost | Quality | Best For |
+| 模型 | 维度 | 成本 | 质量 | 最佳用途 |
 |---|---|---|---|---|
-| text-embedding-3-small | 1536 | $0.02/M tokens | Good | Most use cases |
-| text-embedding-3-large | 3072 | $0.13/M tokens | Best | High-accuracy needs |
-| Cohere Embed v3 | 1024 | $0.10/M tokens | Very Good | Multilingual |
-| BGE-large (open) | 1024 | Self-host | Good | On-premise |
-| nomic-embed-text (open) | 768 | Self-host | Good | On-premise, fast |
+| text-embedding-3-small | 1536 | $0.02/M Token | 良好 | 大多数使用场景 |
+| text-embedding-3-large | 3072 | $0.13/M Token | 最佳 | 高准确度需求 |
+| Cohere Embed v3 | 1024 | $0.10/M Token | 极好 | 多语言 |
+| BGE-large (开源) | 1024 | 私有化部署 | 良好 | 本地部署 |
+| nomic-embed-text (开源) | 768 | 私有化部署 | 良好 | 本地部署，速度快 |
 
-## Cost Estimation by Volume
+## 按业务量的成本估算
 
-| Monthly Messages | GPT-4o | GPT-4o-mini | Claude Haiku | Self-hosted Llama |
+| 每月消息量 | GPT-4o | GPT-4o-mini | Claude Haiku | 私有化部署 Llama |
 |---|---|---|---|---|
 | 10K | $250 | $15 | $25 | $200 (GPU) |
 | 50K | $1,250 | $75 | $125 | $400 (GPU) |
@@ -158,12 +158,12 @@ For RAG, you need an embedding model to vectorize your knowledge base:
 | 500K | $12,500 | $750 | $1,250 | $1,500 (GPU) |
 | 1M | $25,000 | $1,500 | $2,500 | $2,500 (GPU) |
 
-*Assumes ~500 tokens input + 200 tokens output per conversation, 3 turns average*
+*假设每次对话约 500 Token 输入 + 200 Token 输出，平均 3 轮对话*
 
-:::note The Crossover Point
-Self-hosted models become cheaper than API at ~500K+ messages/month, but require DevOps expertise. For most companies, API-based models are the right choice.
+:::note 交叉点
+当每月消息量达到约 50 万条以上时，私有化部署模型会比 API 更便宜，但需要 DevOps 专业知识。对于大多数公司而言，基于 API 的模型是正确的选择。
 :::
 
-## What's Next
+## 下一步
 
-With your model selected, let's design the [RAG architecture](./rag-architecture) — the knowledge retrieval system that powers accurate answers.
+选定模型后，让我们来设计 [RAG 架构](./rag-architecture) —— 为准确回答提供支持的知识检索系统。

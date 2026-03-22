@@ -4,125 +4,125 @@ sidebar_position: 1
 title: 简介
 ---
 
-# AI-Driven Customer Service: Analysis & Implementation Guide
+# AI 驱动的客户服务：分析与实施指南
 
-A comprehensive framework for evaluating, planning, and implementing AI-powered customer service — from economic feasibility through technical architecture.
+一个用于评估、规划和实施 AI (人工智能) 驱动的客户服务的综合框架 —— 从经济可行性到技术架构。
 
-## What This Guide Covers
+## 本指南涵盖的内容
 
-This documentation answers two fundamental questions:
+本档回答了两个基本问题：
 
-1. **Is it economically viable?** — Detailed cost models, ROI frameworks, and real-world case studies
-2. **How do you build it?** — Architecture patterns, integration guides, and implementation roadmaps
+1. **经济上可行吗？** —— 详细的成本模型、ROI (投资回报率) 框架和真实案例研究
+2. **如何构建它？** —— 架构模式、集成指南和实施路线图
 
 ```mermaid
 flowchart TB
-    subgraph Business["Business Analysis"]
-        A[Cost Comparison<br/>human vs AI vs hybrid] --> B[TCO Model<br/>5-year projection]
-        B --> C[ROI Framework<br/>break-even analysis]
-        C --> D[Case Studies<br/>real implementations]
+    subgraph Business["业务分析"]
+        A[成本对比<br/>人工 vs AI vs 混合] --> B[TCO 模型<br/>5 年预测]
+        B --> C[ROI 框架<br/>盈亏平衡分析]
+        C --> D[案例研究<br/>真实实施]
     end
 
-    subgraph Technical["Technical Implementation"]
-        E[AI Model Selection<br/>LLMs, fine-tuning] --> F[RAG Architecture<br/>knowledge base]
-        F --> G[Integration<br/>ticketing, chat, email]
-        G --> H[Quality Guardrails<br/>safety, escalation]
+    subgraph Technical["技术实施"]
+        E[AI 模型选择<br/>LLMs, 微调] --> F[RAG 架构<br/>知识库]
+        F --> G[集成<br/>工单、聊天、邮件]
+        G --> H[质量护栏<br/>安全、升级]
     end
 
-    Business --> Decision{Go / No-Go}
+    Business --> Decision{执行 / 放弃}
     Technical --> Decision
 ```
 
-## Who This Is For
+## 适用对象
 
-| Audience | What You'll Find |
+| 受众 | 您将发现的内容 |
 |---|---|
-| **Business Leaders** | Cost analysis, ROI models, risk assessment, vendor comparison |
-| **Product Managers** | Feature scoping, integration patterns, success metrics |
-| **Engineering Teams** | Architecture, RAG patterns, API design, deployment guides |
-| **Operations** | Monitoring, quality assurance, escalation design |
+| **业务领导者** | 成本分析、ROI 模型、风险评估、供应商对比 |
+| **产品经理** | 功能范围、集成模式、成功指标 |
+| **工程团队** | 架构、RAG (检索增强生成) 模式、API (应用程序接口) 设计、部署指南 |
+| **运营人员** | 监控、质量保证、升级设计 |
 
-## Economic Snapshot
+## 经济概览
 
-The core economics of AI customer service:
+AI 客户服务的核心经济学：
 
-| Metric | Traditional CS | AI-Augmented | Full AI (Tier 1) |
+| 指标 | 传统客服 | AI 增强型 | 全 AI (Tier 1) |
 |---|---|---|---|
-| Cost per ticket | $5–$15 | $0.50–$3 | $0.10–$0.50 |
-| First response time | 4–24 hours | < 1 minute | < 10 seconds |
-| 24/7 coverage cost | 3x headcount | Baseline | Baseline |
-| Scalability | Linear | Exponential | Exponential |
+| 每张工单成本 | $5–$15 | $0.50–$3 | $0.10–$0.50 |
+| 首次响应时间 | 4–24 小时 | < 1 分钟 | < 10 秒 |
+| 24/7 覆盖成本 | 3 倍人力 | 基准线 | 基准线 |
+| 可扩展性 | 线性 | 指数级 | 指数级 |
 
-:::info Not a Replacement — A Transformation
-AI doesn't just replace agents. It changes the entire support model: faster responses, consistent quality, infinite scalability, and humans freed for complex, high-value interactions.
+:::info 不是替代 —— 而是转型
+AI 不仅仅是替代代理。它改变了整个支持模型：更快的响应、一致的质量、无限的可扩展性，并将人类从复杂、高价值的交互中解放出来。
 :::
 
-## The Hybrid Reality
+## 混合现实
 
-Most successful implementations follow a tiered model:
+大多数成功的实施都遵循分层模型：
 
 ```mermaid
 flowchart LR
-    subgraph Tier1["Tier 1: AI Autonomous"]
-        T1[FAQ / Password Reset<br/>Order Status<br/>Basic Troubleshooting]
+    subgraph Tier1["Tier 1: AI 自主"]
+        T1[常见问题 / 密码重置<br/>订单状态<br/>基础故障排除]
     end
 
-    subgraph Tier2["Tier 2: AI-Assisted"]
-        T2[AI drafts response<br/>Human reviews & sends<br/>Complex but patterned]
+    subgraph Tier2["Tier 2: AI 辅助"]
+        T2[AI 草拟回复<br/>人工审核并发送<br/>复杂但有模式]
     end
 
-    subgraph Tier3["Tier 3: Human Only"]
-        T3[Emotional situations<br/>Edge cases<br/>VIP customers<br/>Legal/compliance]
+    subgraph Tier3["Tier 3: 仅限人工"]
+        T3[情感化场景<br/>边缘案例<br/>VIP 客户<br/>法律/合规]
     end
 
-    Tier1 -->|escalate| Tier2
-    Tier2 -->|escalate| Tier3
+    Tier1 -->|升级| Tier2
+    Tier2 -->|升级| Tier3
 ```
 
-Typical ticket distribution in a mature deployment:
-- **Tier 1 (AI handles):** 40–60% of tickets
-- **Tier 2 (AI assists):** 20–30% of tickets
-- **Tier 3 (Human only):** 10–30% of tickets
+成熟部署中的典型工单分布：
+- **Tier 1 (AI 处理):** 40–60% 的工单
+- **Tier 2 (AI 辅助):** 20–30% 的工单
+- **Tier 3 (仅限人工):** 10–30% 的工单
 
-## Tutorial Roadmap
+## 教程路线图
 
-### Business Analysis
-1. **[Architecture Overview](./architecture)** — System design and component interactions
-2. **[Current CS Landscape](./current-landscape)** — Pain points, costs, and why change is needed
-3. **[Cost Comparison](./cost-comparison)** — Head-to-head: human vs AI vs hybrid models
-4. **[TCO Model](./tco-model)** — 5-year total cost of ownership with infrastructure, training, maintenance
-5. **[ROI Framework](./roi-framework)** — Break-even analysis, payback period, sensitivity analysis
-6. **[Case Studies](./case-studies)** — Real implementations: Zendesk AI, Intercom Fin, Klarna, and more
+### 业务分析
+1. **[架构概览](./architecture)** —— 系统设计和组件交互
+2. **[当前客服现状](./current-landscape)** —— 痛点、成本以及为什么需要改变
+3. **[成本对比](./cost-comparison)** —— 正面交锋：人工 vs AI vs 混合模型
+4. **[TCO 模型](./tco-model)** —— 包含基础设施、培训、维护在内的 5 年 TCO (总拥有成本)
+5. **[ROI 框架](./roi-framework)** —— 盈亏平衡分析、投资回收期、敏感性分析
+6. **[案例研究](./case-studies)** —— 真实实施：Zendesk AI, Intercom Fin, Klarna 等
 
-### Technical Architecture
-7. **[AI Models & Selection](./ai-models)** — LLMs, fine-tuning vs RAG, model comparison matrix
-8. **[RAG Architecture](./rag-architecture)** — Knowledge base design, retrieval patterns, chunking strategies
-9. **[Integration Patterns](./integration-patterns)** — Ticketing systems, live chat, email, omnichannel
-10. **[Human Handoff Design](./human-handoff)** — Escalation triggers, context transfer, queue management
-11. **[Quality & Safety](./quality-safety)** — Guardrails, hallucination prevention, compliance
+### 技术架构
+7. **[AI 模型与选择](./ai-models)** —— LLMs (大语言模型), 微调 vs RAG, 模型对比矩阵
+8. **[RAG 架构](./rag-architecture)** —— 知识库设计、检索模式、分块策略
+9. **[集成模式](./integration-patterns)** —— 工单系统、实时聊天、电子邮件、全渠道
+10. **[人工交接设计](./human-handoff)** —— 升级触发器、上下文传输、队列管理
+11. **[质量与安全](./quality-safety)** —— 护栏、幻觉预防、合规性
 
-### Implementation
-12. **[Knowledge Base Engineering](./knowledge-base)** — Building and maintaining the AI's brain
-13. **[Monitoring & Evaluation](./monitoring-eval)** — CSAT, resolution rate, quality metrics
+### 实施
+12. **[知识库工程](./knowledge-base)** —— 构建和维护 AI 的大脑
+13. **[监控与评估](./monitoring-eval)** —— CSAT (客户满意度), 解决率, 质量指标
 
-### Risk & Governance
-14. **[Risk Assessment](./risk-assessment)** — What can go wrong, mitigations, governance framework
-15. **[FAQ](./faq)** — Common questions and misconceptions
+### 风险与治理
+14. **[风险评估](./risk-assessment)** —— 可能出现的问题、缓解措施、治理框架
+15. **[常见问题](./faq)** —— 常见问题和误区
 
-## Prerequisites
+## 前提条件
 
-| For Business Analysis | For Implementation |
+| 业务分析所需 | 实施所需 |
 |---|---|
-| Current CS cost data | Python/TypeScript proficiency |
-| Ticket volume metrics | API integration experience |
-| Customer satisfaction baseline | Vector database familiarity |
-| | LLM API access (OpenAI, Anthropic, etc.) |
+| 当前客服成本数据 | Python/TypeScript 熟练程度 |
+| 工单量指标 | API 集成经验 |
+| 客户满意度基准 | 向量数据库熟悉程度 |
+| | LLM API 访问权限 (OpenAI, Anthropic 等) |
 
-## Design Philosophy
+## 设计理念
 
-1. **Economics first** — Don't build what doesn't pay for itself
-2. **Hybrid by default** — AI handles volume, humans handle complexity
-3. **Measure everything** — CSAT, resolution rate, cost per ticket, escalation rate
-4. **Iterate fast** — Start with Tier 1, expand as confidence grows
+1. **经济优先** —— 不要构建无法收回成本的东西
+2. **默认混合** —— AI 处理业务量，人工处理复杂性
+3. **衡量一切** —— CSAT, 解决率, 每张工单成本, 升级率
+4. **快速迭代** —— 从 Tier 1 开始，随着信心的增强而扩展
 
-Let's start with the [architecture overview](./architecture).
+让我们从 [架构概览](./architecture) 开始。

@@ -3,74 +3,74 @@ sidebar_position: 14
 title: 监控与评估
 ---
 
-# Monitoring & Evaluation
+# 监控与评估 (Monitoring & Evaluation)
 
-What gets measured gets improved. A comprehensive metrics framework for AI customer service.
+凡是能衡量的，都能改进。这是一个针对 AI 客服的全面指标框架。
 
-## Metrics Framework
+## 指标框架 (Metrics Framework)
 
 ```mermaid
 flowchart TB
-    subgraph Customer["Customer Metrics"]
-        C1[CSAT Score]
-        C2[First Contact Resolution]
-        C3[Response Time]
-        C4[Escalation Rate]
+    subgraph Customer["客户指标"]
+        C1[CSAT 评分]
+        C2[首次联系解决率]
+        C3[响应时间]
+        C4[升级率]
     end
 
-    subgraph AI["AI Performance"]
-        A1[Resolution Rate]
-        A2[Accuracy Rate]
-        A3[Confidence Distribution]
-        A4[Hallucination Rate]
+    subgraph AI["AI 性能"]
+        A1[解决率]
+        A2[准确率]
+        A3[置信度分布]
+        A4[幻觉率]
     end
 
-    subgraph Operational["Operational"]
-        O1[Cost Per Ticket]
-        O2[Agent Productivity]
-        O3[Queue Wait Time]
-        O4[KB Coverage]
+    subgraph Operational["运营指标"]
+        O1[单工单成本]
+        O2[人工客服生产力]
+        O3[排队等待时间]
+        O4[知识库覆盖率]
     end
 
-    subgraph Business["Business Impact"]
-        B1[Total Savings]
-        B2[Ticket Deflection]
-        B3[Customer Effort Score]
-        B4[Revenue Impact]
+    subgraph Business["业务影响"]
+        B1[总节省成本]
+        B2[工单分流]
+        B3[客户费力度评分]
+        B4[收入影响]
     end
 ```
 
-## Key Metrics Dashboard
+## 关键指标仪表盘
 
-### Tier 1: North Star Metrics
+### 第一层：北极星指标 (North Star Metrics)
 
-| Metric | Definition | Target | Measurement |
+| 指标 | 定义 | 目标 | 衡量方式 |
 |---|---|---|---|
-| **CSAT** | Customer satisfaction score | > 4.0 / 5.0 | Post-conversation survey |
-| **Resolution Rate** | % of tickets AI resolves without human | 40–60% | Automated tracking |
-| **Cost Per Ticket** | Total cost / total tickets | < $2 (AI) | Financial tracking |
+| **CSAT** | 客户满意度 (Customer Satisfaction) 评分 | > 4.0 / 5.0 | 对话后调查 |
+| **解决率** | AI 无需人工干预即可解决的工单百分比 | 40–60% | 自动跟踪 |
+| **单工单成本** | 总成本 / 总工单数 | < $2 (AI) | 财务跟踪 |
 
-### Tier 2: Quality Metrics
+### 第二层：质量指标
 
-| Metric | Definition | Target | Measurement |
+| 指标 | 定义 | 目标 | 衡量方式 |
 |---|---|---|---|
-| **Accuracy Rate** | % of AI responses factually correct | > 95% | QA sampling |
-| **First Contact Resolution** | Resolved in single interaction | > 70% | Automated |
-| **Escalation Accuracy** | Escalated tickets actually need human | > 85% | Human review |
-| **Hallucination Rate** | % of responses with fabricated info | < 1% | QA sampling |
+| **准确率** | AI 回复事实正确的百分比 | > 95% | QA (质量保证) 抽样 |
+| **首次联系解决率** | 在单次交互中解决的比例 | > 70% | 自动衡量 |
+| **升级准确性** | 升级到人工的工单确实需要人工处理的比例 | > 85% | 人工审核 |
+| **幻觉率** | 包含虚假信息的回复百分比 | < 1% | QA 抽样 |
 
-### Tier 3: Operational Metrics
+### 第三层：运营指标
 
-| Metric | Definition | Target | Measurement |
+| 指标 | 定义 | 目标 | 衡量方式 |
 |---|---|---|---|
-| **First Response Time** | Time to first AI reply | < 10 seconds | System logs |
-| **Resolution Time** | Time to resolution | < 5 minutes (Tier 1) | System logs |
-| **Escalation Rate** | % escalated to human | 20–40% | Automated |
-| **Queue Wait Time** | Human queue wait after escalation | < 2 minutes | Queue system |
+| **首次响应时间** | AI 第一次回复的时间 | < 10 秒 | 系统日志 |
+| **解决时间** | 解决问题所需的时间 | < 5 分钟 (第一层) | 系统日志 |
+| **升级率** | 升级到人工客服的百分比 | 20–40% | 自动衡量 |
+| **排队等待时间** | 升级后在人工队列中的等待时间 | < 2 分钟 | 队列系统 |
 
-## Implementation
+## 实现
 
-### Metrics Collection
+### 指标收集
 
 ```python
 from dataclasses import dataclass
@@ -141,48 +141,48 @@ class MetricsCollector:
         self.response_time.labels(channel=channel).observe(duration_seconds)
 ```
 
-### Real-Time Dashboard
+### 实时仪表盘
 
 ```mermaid
 flowchart LR
-    subgraph Data["Data Sources"]
-        D1[Conversation Logs]
-        D2[Ticket System]
-        D3[Survey Responses]
-        D4[System Metrics]
+    subgraph Data["数据源"]
+        D1[对话日志]
+        D2[工单系统]
+        D3[调查回复]
+        D4[系统指标]
     end
 
-    subgraph Pipeline["Processing"]
-        P1[Stream Processing]
-        P2[Aggregation]
-        P3[Alert Detection]
+    subgraph Pipeline["处理"]
+        P1[流处理]
+        P2[聚合]
+        P3[警报检测]
     end
 
-    subgraph Display["Dashboard"]
-        DD1[Real-time Metrics]
-        DD2[Trend Charts]
-        DD3[Alert Panel]
-        DD4[Drill-down Reports]
+    subgraph Display["展示"]
+        DD1[实时指标]
+        DD2[趋势图表]
+        DD3[警报面板]
+        DD4[下钻报告]
     end
 
     Data --> Pipeline
     Pipeline --> Display
 ```
 
-## Alerting
+## 警报 (Alerting)
 
-### Alert Rules
+### 警报规则
 
-| Alert | Condition | Severity | Action |
+| 警报 | 条件 | 严重程度 | 操作 |
 |---|---|---|---|
-| CSAT drop | CSAT < 3.5 over 100 conversations | Critical | Pause AI, investigate |
-| Accuracy drop | Accuracy < 90% on QA sample | High | Review recent responses |
-| Hallucination spike | > 2% hallucination rate | Critical | Pause AI, fix KB |
-| High escalation | > 60% escalation rate | Medium | Review AI coverage |
-| Slow response | p95 response > 30 seconds | Medium | Check infrastructure |
-| API errors | > 5% error rate | High | Check LLM provider |
+| CSAT 下降 | 100 次对话中 CSAT < 3.5 | 紧急 | 暂停 AI，进行调查 |
+| 准确率下降 | QA 样本中准确率 < 90% | 高 | 审核最近的回复 |
+| 幻觉激增 | 幻觉率 > 2% | 紧急 | 暂停 AI，修复知识库 |
+| 高升级率 | 升级率 > 60% | 中 | 审核 AI 覆盖范围 |
+| 响应缓慢 | p95 响应时间 > 30 秒 | 中 | 检查基础设施 |
+| API 错误 | 错误率 > 5% | 高 | 检查 LLM (大语言模型) 提供商 |
 
-### Alert Implementation
+### 警报实现
 
 ```python
 class AlertManager:
@@ -220,81 +220,81 @@ class AlertManager:
             await self.notifier.send(alert)
 ```
 
-## Reporting
+## 报告
 
-### Weekly Report Template
+### 每周报告模板
 
 ```
-AI Customer Service Weekly Report
+AI 客服每周报告
 ==================================
-Week: [DATE RANGE]
+周：[日期范围]
 
-EXECUTIVE SUMMARY
-- Total conversations: [X]
-- AI resolution rate: [X]%
-- Average CSAT: [X]/5.0
-- Cost savings: $[X]
+执行摘要
+- 总对话数：[X]
+- AI 解决率：[X]%
+- 平均 CSAT：[X]/5.0
+- 成本节省：$[X]
 
-METRICS
-                        This Week    Last Week    Change
-Conversations           [X]          [X]          [X]%
-AI Resolution Rate      [X]%         [X]%         [X]pp
-CSAT (AI handled)       [X]          [X]          [X]
-CSAT (Human handled)    [X]          [X]          [X]
-Avg Response Time       [X]s         [X]s         [X]%
-Escalation Rate         [X]%         [X]%         [X]pp
-Cost Per Ticket         $[X]         $[X]         [X]%
+指标
+                        本周         上周         变化
+对话数                  [X]          [X]          [X]%
+AI 解决率               [X]%         [X]%         [X]pp
+CSAT (AI 处理)          [X]          [X]          [X]
+CSAT (人工处理)         [X]          [X]          [X]
+平均响应时间            [X]s         [X]s         [X]%
+升级率                  [X]%         [X]%         [X]pp
+单工单成本              $[X]         $[X]         [X]%
 
-TOP ISSUES
-1. [Issue]: [Count] occurrences
-2. [Issue]: [Count] occurrences
-3. [Issue]: [Count] occurrences
+主要问题
+1. [问题]：出现 [Count] 次
+2. [问题]：出现 [Count] 次
+3. [问题]：出现 [Count] 次
 
-KNOWLEDGE BASE
-- Articles added: [X]
-- Articles updated: [X]
-- Coverage gaps identified: [X]
+知识库
+- 新增文章：[X]
+- 更新文章：[X]
+- 识别出的覆盖缺口：[X]
 
-RECOMMENDATIONS
-1. [Recommendation]
-2. [Recommendation]
-3. [Recommendation]
+建议
+1. [建议]
+2. [建议]
+3. [建议]
 ```
 
-### Monthly Deep Dive
+### 每月深度分析
 
-| Analysis | Purpose |
+| 分析项目 | 目的 |
 |---|---|
-| Category breakdown | Which categories AI handles best/worst |
-| Confidence calibration | Are confidence scores accurate predictors? |
-| Escalation analysis | Why are tickets being escalated? |
-| KB gap analysis | What questions can't AI answer? |
-| Customer cohort analysis | Does AI work better for certain segments? |
-| Cost trend | Is cost per ticket improving? |
+| 类别细分 | 哪些类别的 AI 处理效果最好/最差 |
+| 置信度校准 | 置信度评分是否是准确的预测指标？ |
+| 升级分析 | 为什么工单会被升级？ |
+| 知识库缺口分析 | 哪些问题 AI 无法回答？ |
+| 客户群分析 | AI 对某些细分客户的效果是否更好？ |
+| 成本趋势 | 单工单成本是否在改善？ |
 
-## Continuous Improvement Loop
+## 持续改进闭环
 
 ```mermaid
 flowchart TB
-    M[Measure] --> A[Analyze]
-    A --> I[Identify Issues]
-    I --> P[Prioritize]
-    P --> Fix[Implement Fix]
-    Fix --> V[Verify Impact]
+    M[衡量] --> A[分析]
+    A --> I[识别问题]
+    I --> P[优先级排序]
+    P --> Fix[实施修复]
+    Fix --> V[验证影响]
     V --> M
 
-    subgraph Fixes["Common Fixes"]
-        F1[Update KB article]
-        F2[Adjust prompts]
-        F3[Add new FAQ]
-        F4[Retrain model]
-        F5[Adjust thresholds]
+    subgraph Fixes["常见修复措施"]
+        F1[更新知识库文章]
+        F2[调整提示词]
+        F3[添加新的常见问题]
+        F4[重新训练模型]
+        F5[调整阈值]
     end
 
     P --> Fixes
     Fixes --> Fix
 ```
 
-## What's Next
+## 下一步
 
-Before going live, review the [Risk Assessment](./risk-assessment) to understand what can go wrong and how to mitigate it.
+在上线之前，请查看 [风险评估](./risk-assessment) 以了解可能出现的问题以及如何缓解。

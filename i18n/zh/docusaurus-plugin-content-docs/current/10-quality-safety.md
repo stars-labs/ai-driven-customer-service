@@ -3,49 +3,49 @@ sidebar_position: 12
 title: 质量与安全
 ---
 
-# Quality & Safety Guardrails
+# 质量与安全护栏
 
-Preventing hallucinations, ensuring compliance, and maintaining brand voice in AI customer service.
+在 AI 客户服务 (Customer Service, CS) 中防止幻觉、确保合规并维护品牌声调。
 
-## The Hallucination Problem
+## 幻觉问题
 
-LLMs can generate plausible but incorrect information. In CS, this means:
+LLM (大语言模型) 可能会生成看似合理但错误的信息。在 CS 中，这意味着：
 
-- Wrong product information
-- Incorrect pricing or policies
-- Made-up procedures
-- False promises (refunds, timelines)
+- 错误的产品信息
+- 不正确的定价或政策
+- 编造的流程
+- 虚假承诺（退款、时间线）
 
-:::danger Hallucination in CS = Broken Trust
-One confidently wrong answer can lose a customer permanently. Unlike a chatbot for fun, CS accuracy is non-negotiable.
+:::danger CS 中的幻觉 = 信任破裂
+一个自信的错误答案可能会永久失去一个客户。与娱乐性质的聊天机器人不同，CS 的准确性是不容商量的。
 :::
 
-## Defense Layers
+## 防御层
 
 ```mermaid
 flowchart TB
-    subgraph Layer1["Layer 1: Grounding"]
-        L1A[RAG - only use approved docs]
-        L1B[Source attribution required]
-        L1C[No general knowledge]
+    subgraph Layer1["第 1 层：接地 (Grounding)"]
+        L1A[RAG - 仅使用经过批准的文档]
+        L1B[要求来源归属]
+        L1C[不使用通用知识]
     end
 
-    subgraph Layer2["Layer 2: Validation"]
-        L2A[Confidence scoring]
-        L2B[Fact checking against KB]
-        L2C[Consistency check]
+    subgraph Layer2["第 2 层：验证"]
+        L2A[置信度评分]
+        L2B[对照 KB (知识库) 进行事实核查]
+        L2C[一致性检查]
     end
 
-    subgraph Layer3["Layer 3: Output Control"]
-        L3A[Response filtering]
-        L3B[Policy compliance check]
-        L3C[Tone/brand voice]
+    subgraph Layer3["第 3 层：输出控制"]
+        L3A[响应过滤]
+        L3B[政策合规性检查]
+        L3C[语气/品牌声调]
     end
 
-    subgraph Layer4["Layer 4: Human Oversight"]
-        L4A[Low confidence → human]
-        L4B[Periodic QA sampling]
-        L4C[Customer feedback loop]
+    subgraph Layer4["第 4 层：人工监督"]
+        L4A[低置信度 → 转人工]
+        L4B[定期 QA (质量保证) 抽样]
+        L4C[客户反馈循环]
     end
 
     Layer1 --> Layer2
@@ -53,11 +53,11 @@ flowchart TB
     Layer3 --> Layer4
 ```
 
-## Implementation
+## 实现
 
-### System Prompt Engineering
+### 系统提示词工程 (System Prompt Engineering)
 
-The system prompt is your first line of defense:
+系统提示词是您的第一道防线：
 
 ```python
 SYSTEM_PROMPT = """You are a customer service assistant for [Company].
@@ -92,7 +92,7 @@ SYSTEM_PROMPT = """You are a customer service assistant for [Company].
 """
 ```
 
-### Knowledge-Grounded Responses
+### 基于知识的响应
 
 ```python
 async def generate_safe_response(
@@ -141,7 +141,7 @@ Remember: If these articles don't contain the answer, say so and escalate."""
     )
 ```
 
-### Response Validation
+### 响应验证
 
 ```python
 class ResponseValidator:
@@ -204,9 +204,9 @@ Also list any unsupported claims."""
         )
 ```
 
-## PII Protection
+## PII (个人身份信息) 保护
 
-### Detection & Masking
+### 检测与脱敏
 
 ```python
 import re
@@ -239,19 +239,19 @@ class PIIDetector:
         return text
 ```
 
-### PII Handling Policy
+### PII 处理政策
 
-| PII Type | Log | AI Processing | Response |
+| PII 类型 | 日志记录 | AI 处理 | 响应 |
 |---|---|---|---|
-| Email | Masked | Allowed (masked) | Never echo back |
-| Phone | Masked | Allowed (masked) | Never echo back |
-| SSN | Never log | Never process | Escalate to human |
-| Credit card | Never log | Never process | Escalate to human |
-| Address | Masked | Allowed (masked) | Confirm, don't repeat |
+| 电子邮件 | 脱敏 | 允许（脱敏） | 绝不回显 |
+| 电话 | 脱敏 | 允许（脱敏） | 绝不回显 |
+| SSN (社会安全号码) | 绝不记录 | 绝不处理 | 转人工 |
+| 信用卡 | 绝不记录 | 绝不处理 | 转人工 |
+| 地址 | 脱敏 | 允许（脱敏） | 确认，不重复 |
 
-## Compliance Guardrails
+## 合规护栏
 
-### Industry-Specific Rules
+### 行业特定规则
 
 ```python
 COMPLIANCE_RULES = {
@@ -287,47 +287,47 @@ def apply_compliance_rules(response: str, industry: str, query: str) -> str:
     return response
 ```
 
-## Quality Monitoring
+## 质量监控
 
-### Sampling & Review
+### 抽样与审查
 
 ```mermaid
 flowchart TB
-    subgraph Sampling["QA Sampling"]
-        S1[Random 5% of AI responses]
-        S2[All low-confidence responses]
-        S3[All escalated conversations]
-        S4[All negative CSAT]
+    subgraph Sampling["QA 抽样"]
+        S1[随机 5% 的 AI 响应]
+        S2[所有低置信度响应]
+        S3[所有升级转接的对话]
+        S4[所有负面 CSAT (客户满意度)]
     end
 
-    subgraph Review["Human Review"]
-        R1[Accuracy check]
-        R2[Tone check]
-        R3[Policy compliance]
-        R4[Completeness]
+    subgraph Review["人工审查"]
+        R1[准确性检查]
+        R2[语气检查]
+        R3[政策合规性]
+        R4[完整性]
     end
 
-    subgraph Feedback["Feedback Loop"]
-        F1[Update KB]
-        F2[Adjust prompts]
-        F3[Retrain if needed]
+    subgraph Feedback["反馈循环"]
+        F1[更新 KB (知识库)]
+        F2[调整提示词]
+        F3[如果需要，重新训练]
     end
 
     Sampling --> Review
     Review --> Feedback
 ```
 
-### Quality Metrics Dashboard
+### 质量指标仪表盘
 
-| Metric | Target | Measurement |
+| 指标 | 目标 | 衡量方式 |
 |---|---|---|
-| Accuracy rate | > 95% | Human review of sample |
-| Groundedness | > 98% | Automated + human review |
-| Policy compliance | 100% | Automated check |
-| Tone compliance | > 95% | Human review |
-| PII leak rate | 0% | Automated scan |
-| Customer satisfaction | > 4.0/5 | CSAT survey |
+| 准确率 | > 95% | 样本的人工审查 |
+| 接地性 (Groundedness) | > 98% | 自动化 + 人工审查 |
+| 政策合规性 | 100% | 自动化检查 |
+| 语气合规性 | > 95% | 人工审查 |
+| PII 泄露率 | 0% | 自动化扫描 |
+| 客户满意度 (CSAT) | > 4.0/5 | CSAT 调查 |
 
-## What's Next
+## 下一步
 
-To power all these guardrails, you need a well-engineered [knowledge base](./knowledge-base) — the foundation of accurate AI responses.
+为了支持所有这些护栏，您需要一个精心设计的 [知识库](./knowledge-base) —— 准确 AI 响应的基石。

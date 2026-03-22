@@ -3,33 +3,33 @@ sidebar_position: 11
 title: 人工转接设计
 ---
 
-# Human Handoff Design
+# 人工转接设计
 
-The most critical part of AI CS: knowing when to stop and let humans take over.
+AI CS (客户服务) 最关键的部分：知道何时停止并让人工接手。
 
-## Handoff Philosophy
+## 转接理念
 
-:::danger The #1 Failure Mode
-AI customer service fails when it **refuses to escalate**. Customers who can't reach a human become furious. Design escalation as a first-class feature, not an afterthought.
+:::danger 第一大失败模式
+当 AI 客户服务**拒绝升级转接**时，它就失败了。无法联系到人工客服的客户会变得愤怒。将升级转接设计为一等公民功能，而不是事后才考虑的事情。
 :::
 
-## Escalation Triggers
+## 升级触发器
 
-### Automatic Triggers
+### 自动触发器
 
 ```mermaid
 flowchart TB
-    subgraph Triggers["Escalation Triggers"]
-        T1[Confidence Score<br/>< 0.7]
-        T2[Sentiment Analysis<br/>frustrated / angry]
-        T3[Repeat Contact<br/>3+ attempts same issue]
-        T4[Explicit Request<br/>"talk to human"]
-        T5[VIP Customer<br/>account tier]
-        T6[Complex Issue<br/>multi-system]
-        T7[Safety Keywords<br/>legal, refund, cancel]
+    subgraph Triggers["升级触发器"]
+        T1[置信度评分<br/>< 0.7]
+        T2[情感分析<br/>沮丧 / 愤怒]
+        T3[重复联系<br/>同一问题尝试 3 次以上]
+        T4[明确请求<br/>"找人工"]
+        T5[VIP 客户<br/>账户等级]
+        T6[复杂问题<br/>涉及多个系统]
+        T7[安全关键词<br/>法律、退款、取消]
     end
 
-    T1 --> E[Escalate]
+    T1 --> E[升级转接]
     T2 --> E
     T3 --> E
     T4 --> E
@@ -38,19 +38,19 @@ flowchart TB
     T7 --> E
 ```
 
-### Trigger Configuration
+### 触发器配置
 
-| Trigger | Threshold | Priority | Notes |
+| 触发器 | 阈值 | 优先级 | 备注 |
 |---|---|---|---|
-| Low confidence | < 0.70 | Medium | AI unsure of answer |
-| Frustration detected | Sentiment < -0.5 | High | Customer expressing anger |
-| Repeat contact | 3rd contact on same issue | High | AI failing to resolve |
-| Explicit request | "talk to human", "agent", "person" | Critical | Always honor immediately |
-| VIP customer | Account tier = VIP/Enterprise | High | Skip AI, go to senior agent |
-| Safety keywords | "lawyer", "sue", "refund", "cancel" | Critical | Compliance risk |
-| Sensitive topics | Billing disputes, account closure | High | Financial/legal implications |
+| 低置信度 | < 0.70 | 中 | AI 对答案不确定 |
+| 检测到沮丧情绪 | 情感评分 < -0.5 | 高 | 客户表达愤怒 |
+| 重复联系 | 同一问题第 3 次联系 | 高 | AI 未能解决问题 |
+| 明确请求 | "找人工"、"客服"、"人工" | 紧急 | 始终立即响应 |
+| VIP 客户 | 账户等级 = VIP/企业级 | 高 | 跳过 AI，直接转接高级客服 |
+| 安全关键词 | "律师"、"起诉"、"退款"、"取消" | 紧急 | 合规风险 |
+| 敏感话题 | 账单纠纷、账户关闭 | 高 | 财务/法律影响 |
 
-### Explicit Request Detection
+### 明确请求检测
 
 ```python
 HUMAN_REQUEST_PATTERNS = [
@@ -69,30 +69,30 @@ def should_escalate_to_human(message: str) -> bool:
     return any(re.search(pattern, message_lower) for pattern in HUMAN_REQUEST_PATTERNS)
 ```
 
-## Context Transfer
+## 上下文传递
 
-When escalating, transfer **full context** so the human agent doesn't ask the customer to repeat themselves:
+在升级转接时，传递**完整的上下文**，这样人工客服就不用让客户重复他们说过的话：
 
 ```mermaid
 sequenceDiagram
-    participant C as Customer
-    participant AI as AI Agent
-    participant Q as Queue Manager
-    participant H as Human Agent
+    participant C as 客户
+    participant AI as AI 助手
+    participant Q as 队列管理器
+    participant H as 人工客服
 
-    C->>AI: "My order hasn't arrived"
-    AI->>AI: Check order status
-    AI->>AI: Check shipping
-    AI->>C: "Order #12345 shipped Jan 10"
-    C->>AI: "This is unacceptable!"
-    AI->>AI: Detect frustration → escalate
-    AI->>Q: Escalate with context
-    Note over Q: Context Package:<br/>• Transcript<br/>• Order #12345 status<br/>• Customer: 3yr, 50 orders<br/>• Sentiment: frustrated<br/>• AI tried: status check
-    Q->>H: Assign to agent
-    H->>C: "I see your order is delayed. Let me expedite..."
+    C->>AI: "我的订单还没到"
+    AI->>AI: 检查订单状态
+    AI->>AI: 检查物流
+    AI->>C: "订单 #12345 已于 1 月 10 日发货"
+    C->>AI: "这太不可接受了！"
+    AI->>AI: 检测到沮丧情绪 → 升级转接
+    AI->>Q: 携带上下文升级转接
+    Note over Q: 上下文包：<br/>• 对话记录<br/>• 订单 #12345 状态<br/>• 客户：3 年，50 个订单<br/>• 情感：沮丧<br/>• AI 尝试过：状态检查
+    Q->>H: 分配给客服
+    H->>C: "我看到您的订单延迟了。让我为您加急..."
 ```
 
-### Context Package Structure
+### 上下文包结构
 
 ```python
 @dataclass
@@ -130,49 +130,49 @@ class EscalationContext:
     def to_agent_view(self) -> str:
         """Generate human-readable summary for agent."""
         return f"""
-## Escalation Summary
+## 升级转接摘要
 
-**Reason:** {self.escalation_reason}
-**Urgency:** {self.urgency}
-**Duration:** {self.duration_seconds // 60} minutes, {self.message_count} messages
+**原因：** {self.escalation_reason}
+**紧急程度：** {self.urgency}
+**持续时间：** {self.duration_seconds // 60} 分钟，{self.message_count} 条消息
 
-### Customer Profile
-- Tier: {self.customer_tier}
-- Account age: {self.account_age_days} days
-- Previous tickets: {self.previous_tickets}
-- Lifetime value: ${self.lifetime_value:,.2f}
+### 客户画像
+- 等级：{self.customer_tier}
+- 开户时长：{self.account_age_days} 天
+- 历史工单：{self.previous_tickets}
+- 终身价值 (LTV)：${self.lifetime_value:,.2f}
 
-### Issue Summary
-- Category: {self.issue_category}
-- Sentiment: {self.sentiment_score:.2f} (negative)
-- Related orders: {', '.join(self.related_order_ids) or 'None'}
+### 问题摘要
+- 类别：{self.issue_category}
+- 情感评分：{self.sentiment_score:.2f} (负面)
+- 相关订单：{', '.join(self.related_order_ids) or '无'}
 
-### AI Attempts
+### AI 尝试
 {chr(10).join(f'- {attempt}' for attempt in self.ai_attempts)}
 
-### Conversation Transcript
+### 对话记录
 {self.format_transcript()}
 """
 ```
 
-## Queue Management
+## 队列管理
 
-### Routing Strategy
+### 路由策略
 
 ```mermaid
 flowchart TB
-    subgraph Queue["Escalation Queue"]
+    subgraph Queue["升级队列"]
         direction TB
-        Q1[Critical Queue<br/>VIP, legal, safety]
-        Q2[High Queue<br/>frustrated, repeat]
-        Q3[Medium Queue<br/>low confidence]
-        Q4[Low Queue<br/>general escalation]
+        Q1[紧急队列<br/>VIP、法律、安全]
+        Q2[高优先级队列<br/>沮丧、重复联系]
+        Q3[中优先级队列<br/>低置信度]
+        Q4[低优先级队列<br/>常规升级]
     end
 
-    subgraph Agents["Agent Pool"]
-        A1[Senior Agents<br/>handles Critical + High]
-        A2[Mid Agents<br/>handles Medium]
-        A3[Junior Agents<br/>handles Low]
+    subgraph Agents["客服池"]
+        A1[资深客服<br/>处理紧急 + 高优先级]
+        A2[中级客服<br/>处理中优先级]
+        A3[初级客服<br/>处理低优先级]
     end
 
     Q1 --> A1
@@ -181,7 +181,7 @@ flowchart TB
     Q4 --> A3
 ```
 
-### Priority Assignment
+### 优先级分配
 
 ```python
 def calculate_escalation_priority(context: EscalationContext) -> str:
@@ -219,71 +219,71 @@ def calculate_escalation_priority(context: EscalationContext) -> str:
         return "low"
 ```
 
-## Agent Interface
+## 客服界面
 
-### What the Agent Sees
+### 客服看到的内容
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  ESCALATED: Order not arrived - Customer frustrated │
-│  Priority: HIGH          Channel: Chat              │
+│  已升级：订单未送达 - 客户感到沮丧                  │
+│  优先级：高              渠道：在线聊天             │
 ├─────────────────────────────────────────────────────┤
-│  Customer: Jane Doe (VIP)                           │
-│  Account: 3 years, $45,000 LTV                      │
-│  Previous tickets: 12 (all resolved)                │
+│  客户：Jane Doe (VIP)                               │
+│  账户：3 年，LTV $45,000                            │
+│  历史工单：12 (全部已解决)                          │
 ├─────────────────────────────────────────────────────┤
-│  AI SUMMARY:                                        │
-│  • Customer asked about order #12345                │
-│  • AI found order shipped Jan 10, delayed at hub    │
-│  • Customer expressed frustration                   │
-│  • AI confidence dropped to 0.45 → escalated       │
+│  AI 摘要：                                          │
+│  • 客户询问订单 #12345                              │
+│  • AI 发现订单于 1 月 10 日发货，在分拨中心延迟     │
+│  • 客户表达了沮丧情绪                               │
+│  • AI 置信度降至 0.45 → 已升级转接                  │
 ├─────────────────────────────────────────────────────┤
-│  CONVERSATION:                                      │
-│  Customer: My order hasn't arrived                  │
-│  AI: Your order #12345 shipped Jan 10. Tracking     │
-│      shows delay at distribution hub.               │
-│  Customer: This is unacceptable, I need it now!     │
-│  AI: [ESCALATED] Let me connect you with a          │
-│      specialist who can help expedite this.         │
+│  对话记录：                                         │
+│  客户：我的订单还没到                               │
+│  AI：您的订单 #12345 已于 1 月 10 日发货。物流      │
+│      显示在分拨中心有延迟。                         │
+│  客户：这太不可接受了，我现在就要！                 │
+│  AI：[已升级] 让我为您转接一位可以帮助加急处理      │
+│      的专员。                                       │
 ├─────────────────────────────────────────────────────┤
-│  SUGGESTED ACTIONS:                                 │
-│  [Expedite Shipping] [Issue Refund] [Apply Credit]  │
+│  建议操作：                                         │
+│  [加急物流] [办理退款] [发放积分]                   │
 ├─────────────────────────────────────────────────────┤
-│  [Accept] [Requeue] [Transfer]                      │
+│  [接受] [重新排队] [转接]                           │
 └─────────────────────────────────────────────────────┘
 ```
 
-## Handback to AI
+## 交回给 AI
 
-Sometimes a human resolves part of the issue and can hand back to AI:
+有时人工客服解决了部分问题，可以交回给 AI：
 
 ```mermaid
 sequenceDiagram
-    participant C as Customer
-    participant H as Human Agent
-    participant AI as AI Agent
+    participant C as 客户
+    participant H as 人工客服
+    participant AI as AI 助手
 
-    C->>H: Complex billing question
-    H->>H: Investigates, finds error
-    H->>C: "I've corrected the billing error"
-    H->>H: Issue resolved, but customer has follow-up questions
-    H->>AI: Handback: "Billing corrected, customer may have follow-up"
-    AI->>C: "Your billing has been corrected. Is there anything else?"
-    C->>AI: "How do I set up autopay?"
-    AI->>C: [Provides autopay instructions from KB]
+    C->>H: 复杂的账单问题
+    H->>H: 调查，发现错误
+    H->>C: "我已经纠正了账单错误"
+    H->>H: 问题已解决，但客户还有后续问题
+    H->>AI: 交回："账单已纠正，客户可能有后续问题"
+    AI->>C: "您的账单已纠正。还有什么我可以帮您的吗？"
+    C->>AI: "我该如何设置自动付款？"
+    AI->>C: [根据知识库提供自动付款说明]
 ```
 
-## Metrics to Track
+## 跟踪指标
 
-| Metric | Target | Why It Matters |
+| 指标 | 目标 | 为什么重要 |
 |---|---|---|
-| Escalation rate | 20–40% | Too high = AI not working, too low = customer frustration |
-| Escalation accuracy | > 85% | Escalated tickets should actually need human |
-| Context transfer quality | > 90% | Agent shouldn't need to re-ask questions |
-| Time to human pick-up | < 2 minutes (chat) | Customer shouldn't wait after escalation |
-| Handback rate | 5–15% | Some issues benefit from AI + human combo |
-| False escalation rate | < 10% | AI giving up too early |
+| 升级转接率 | 20–40% | 太高 = AI 不起作用，太低 = 客户沮丧 |
+| 升级准确率 | > 85% | 升级的工单应该确实需要人工处理 |
+| 上下文传递质量 | > 90% | 客服不应该需要重新询问问题 |
+| 人工接听时间 | < 2 分钟 (聊天) | 客户在升级后不应等待 |
+| 交回率 | 5–15% | 某些问题受益于 AI + 人工的组合 |
+| 误升级率 | < 10% | AI 过早放弃 |
 
-## What's Next
+## 下一步
 
-With handoff designed, let's implement [quality and safety guardrails](./quality-safety) — preventing hallucinations, ensuring compliance, and maintaining brand voice.
+设计好转接后，让我们实施 [质量与安全护栏](./quality-safety) —— 防止幻觉，确保合规，并维护品牌声调。

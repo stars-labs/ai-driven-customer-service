@@ -3,201 +3,201 @@ sidebar_position: 7
 title: 案例研究
 ---
 
-# Case Studies: Real-World AI CS Implementations
+# 案例研究：真实的 AI 客服实施
 
-Learn from companies that have successfully deployed AI customer service at scale.
+借鉴已成功大规模部署 AI 客服的公司的经验。
 
 ## Klarna (2024)
 
-### The Headline
-AI assistant handled **2.3 million conversations** in its first month, doing the work of **700 full-time agents**.
+### 核心摘要
+AI 助手在第一个月处理了 **230 万次对话**，相当于 **700 名全职客服**的工作量。
 
-### Before
-| Metric | Value |
+### 实施前
+| 指标 | 数值 |
 |---|---|
-| Agents | 3,000+ |
-| Avg resolution time | 11 minutes |
-| Languages supported | Limited by staffing |
-| Cost per interaction | $8–$12 |
+| 客服人数 | 3,000+ |
+| 平均解决时间 | 11 分钟 |
+| 支持语言 | 受限于人员配置 |
+| 每次交互成本 | $8–$12 |
 
-### After
-| Metric | Value |
+### 实施后
+| 指标 | 数值 |
 |---|---|
-| AI handles | 2/3 of all conversations |
-| Avg resolution time | < 2 minutes |
-| Languages supported | 23 (vs limited before) |
-| Estimated savings | $40M annually |
+| AI 处理量 | 所有对话的 2/3 |
+| 平均解决时间 | < 2 分钟 |
+| 支持语言 | 23 种（此前受限） |
+| 预计节省 | 每年 $40M |
 
-### What They Did
-- Built on OpenAI's models
-- Integrated with their internal systems (billing, refunds, account)
-- AI handles refunds, payment issues, account questions
-- Human agents focus on complex disputes and edge cases
+### 实施举措
+- 基于 OpenAI 的模型构建
+- 与内部系统（账单、退款、账户）集成
+- AI 处理退款、支付问题、账户咨询
+- 人工客服专注于复杂的争议和极端情况
 
-### Key Lesson
-> "The AI assistant is available 24/7 and communicates in over 35 languages, a significant improvement over the human-only setup."
+### 关键启示
+> “AI 助手 24/7 全天候在线，并能以超过 35 种语言进行交流，这比纯人工配置有了显著提升。”
 
-:::tip Speed of Impact
-Klarna saw ROI within the first month. Their high volume (millions of interactions) meant savings compound immediately.
+:::tip 见效速度
+Klarna 在第一个月就看到了投资回报。他们的高业务量（数百万次交互）意味着节省的成本会立即产生复利效应。
 :::
 
 ---
 
 ## Intercom Fin (2023–2024)
 
-### The Headline
-Fin resolves **up to 50%** of support questions automatically, trained on customers' existing help center content.
+### 核心摘要
+Fin 能够自动解决**高达 50%** 的支持问题，其训练基于客户现有的帮助中心内容。
 
-### Architecture
+### 架构
 ```mermaid
 flowchart TB
-    A[Customer Question] --> B[Fin AI]
-    B --> C{Confidence Check}
-    C -->|High| D[Direct Answer]
-    C -->|Medium| E[Suggested Answer<br/>Agent Reviews]
-    C -->|Low| F[Route to Agent]
-    D --> G[Track Resolution]
+    A[客户问题] --> B[Fin AI]
+    B --> C{置信度检查}
+    C -->|高| D[直接回答]
+    C -->|中| E[建议回答<br/>客服审核]
+    C -->|低| F[转接至客服]
+    D --> G[跟踪解决情况]
     E --> G
     F --> G
-    G --> H[Feedback Loop]
+    G --> H[反馈循环]
     H --> B
 ```
 
-### Results Across Customers
+### 客户群成果
 
-| Company | Resolution Rate | CSAT Impact | Cost Reduction |
+| 公司 | 解决率 | CSAT 影响 | 成本降低 |
 |---|---|---|---|
-| SaaS (mid-market) | 45% | +8% CSAT | 35% |
-| E-commerce | 52% | Neutral | 40% |
-| Fintech | 38% | +5% CSAT | 28% |
+| SaaS（中型市场） | 45% | +8% CSAT | 35% |
+| 电商 | 52% | 持平 | 40% |
+| 金融科技 | 38% | +5% CSAT | 28% |
 
-### Key Lesson
-- Start with existing help center content (zero additional KB work)
-- Resolution rate improves over time as Fin learns from interactions
-- Works best when help center is already comprehensive
+### 关键启示
+- 从现有的帮助中心内容开始（无需额外的知识库构建工作）
+- 随着 Fin 从交互中学习，解决率会随时间提高
+- 当帮助中心内容已经很全面时，效果最佳
 
 ---
 
 ## Zendesk AI (2023–2024)
 
-### The Headline
-Zendesk's AI features reduce **first reply time by 80%** and improve **agent productivity by 40%**.
+### 核心摘要
+Zendesk 的 AI 功能将**首次回复时间缩短了 80%**，并将**客服生产力提高了 40%**。
 
-### Three-Tier Approach
+### 三层方案
 
-| Tier | Function | Adoption |
+| 层级 | 功能 | 采用率 |
 |---|---|---|
-| AI Agents | Autonomous resolution | 15–30% of tickets |
-| Copilot | Agent assistance (draft, summarize) | Used by 70%+ of agents |
-| Intelligent Triage | Auto-categorize, prioritize, route | 90%+ accuracy |
+| AI 代理 (AI Agents) | 自主解决 | 15–30% 的工单 |
+| 智能副驾 (Copilot) | 客服辅助（草拟、总结） | 70% 以上的客服使用 |
+| 智能分流 (Intelligent Triage) | 自动分类、优先级排序、路由 | 90% 以上的准确率 |
 
-### Customer Results
+### 客户成果
 
 **Shopify:**
-- 40% reduction in first reply time
-- AI handles password resets, order status, billing inquiries
-- Agents focus on merchant-specific issues
+- 首次回复时间缩短 40%
+- AI 处理密码重置、订单状态、账单查询
+- 客服专注于商家特定的问题
 
 **Mailchimp:**
-- 30% of tickets resolved without human intervention
-- CSAT maintained at 4.2/5 (same as human-only)
-- Agent satisfaction improved (less repetitive work)
+- 30% 的工单在无需人工干预的情况下得到解决
+- CSAT 保持在 4.2/5（与纯人工模式持平）
+- 客服满意度提高（减少了重复性工作）
 
-### Key Lesson
-> "The value isn't just automation. Copilot makes human agents faster and more consistent."
+### 关键启示
+> “价值不仅仅在于自动化。智能副驾 (Copilot) 让人工客服变得更快、更具一致性。”
 
 ---
 
 ## Freshdesk Freddy AI (2023)
 
-### The Headline
-Freshworks' AI assistant achieves **80% accuracy** in ticket categorization and **40% auto-resolution** for qualifying tickets.
+### 核心摘要
+Freshworks 的 AI 助手在工单分类方面达到了 **80% 的准确率**，并对符合条件的工单实现了 **40% 的自动解决率**。
 
-### Implementation Pattern
+### 实施模式
 
 ```mermaid
 flowchart LR
-    subgraph Input["Ticket Ingestion"]
-        I1[Email] --> P
-        I2[Chat] --> P
-        I3[Portal] --> P
-        P[Parser]
+    subgraph Input["工单接入"]
+        I1[邮件] --> P
+        I2[聊天] --> P
+        I3[门户] --> P
+        P[解析器]
     end
 
     subgraph AI["Freddy AI"]
-        P --> C[Categorize]
-        C --> S[Sentiment]
-        S --> R[Route]
-        R --> A[Auto-resolve or Draft]
+        P --> C[分类]
+        C --> S[情感分析]
+        S --> R[路由]
+        R --> A[自动解决或草拟]
     end
 
-    subgraph Output["Resolution"]
-        A -->|Auto| D[Send Response]
-        A -->|Draft| H[Agent Review]
+    subgraph Output["解决"]
+        A -->|自动| D[发送响应]
+        A -->|草拟| H[客服审核]
         H --> D
     end
 ```
 
-### Key Lesson
-- Start with **triage** (categorization, routing) — easier to prove value
-- Auto-resolution comes second, once you trust the categorization
-- Sentiment analysis enables smart routing (angry → senior agent)
+### 关键启示
+- 从**分流**（分类、路由）开始 —— 更容易证明价值
+- 自动解决紧随其后，前提是您信任分类结果
+- 情感分析可实现智能路由（愤怒的客户 -> 资深客服）
 
 ---
 
 ## Bank of America Erica (2018–2024)
 
-### The Headline
-Virtual financial assistant with **2+ billion interactions** served to **42 million clients**.
+### 核心摘要
+虚拟金融助手已为 **4200 万客户**提供了超过 **20 亿次交互**服务。
 
-### Scale
+### 规模
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---|
-| Total interactions | 2+ billion |
-| Users | 42 million |
-| Daily interactions | 50+ million |
-| Tasks automated | Balance checks, transfers, bill pay, spending insights |
+| 总交互次数 | 20 亿+ |
+| 用户数 | 4,200 万 |
+| 每日交互次数 | 5,000 万+ |
+| 自动化任务 | 余额查询、转账、账单支付、支出洞察 |
 
-### Key Lesson
-- Voice + text multi-modal support
-- Deep integration with banking systems (not just chat)
-- Continuous feature expansion over 6 years
-- Regulatory compliance built into every interaction
+### 关键启示
+- 语音 + 文本多模态支持
+- 与银行系统深度集成（不仅仅是聊天）
+- 6 年间持续的功能扩展
+- 每次交互都内置了监管合规性
 
 ---
 
-## Common Patterns Across All Cases
+## 所有案例的共同模式
 
 ```mermaid
 flowchart TB
-    subgraph Success["Success Patterns"]
-        S1[Start with Tier 1<br/>FAQ, status, simple tasks]
-        S2[Use existing content<br/>help center, docs, past tickets]
-        S3[Human-in-the-loop<br/>escalation, not replacement]
-        S4[Measure everything<br/>CSAT, resolution rate, cost]
-        S5[Iterate rapidly<br/>weekly prompt/KB updates]
+    subgraph Success["成功模式"]
+        S1[从 1 级开始<br/>常见问题、状态查询、简单任务]
+        S2[利用现有内容<br/>帮助中心、文档、历史工单]
+        S3[人机协作<br/>升级处理，而非完全替代]
+        S4[衡量一切<br/>CSAT、解决率、成本]
+        S5[快速迭代<br/>每周更新提示词/知识库]
     end
 ```
 
-### What Separates Success from Failure
+### 成功与失败的区别
 
-| Success Factor | Failed Projects Lack |
+| 成功因素 | 失败项目所缺失的 |
 |---|---|
-| Comprehensive knowledge base | Sparse or outdated docs |
-| Clear escalation paths | AI or nothing approach |
-| Continuous feedback loop | Deploy and forget |
-| Executive sponsorship | IT-only initiative |
-| Realistic expectations | Expect 100% automation |
+| 全面的知识库 | 稀疏或过时的文档 |
+| 清晰的升级路径 | “非 AI 即无”的方法 |
+| 持续的反馈循环 | 部署后即不管 |
+| 高管支持 | 仅由 IT 部门发起的项目 |
+| 现实的预期 | 期望 100% 自动化 |
 
-## Lessons Learned
+## 经验教训
 
-1. **Tier 1 automation delivers 80% of the value** — Don't try to automate everything on day one
-2. **Quality > quantity** — 40% automation with 4.5 CSAT beats 70% automation with 3.5 CSAT
-3. **Knowledge base is the bottleneck** — AI quality is bounded by KB quality
-4. **Start with copilot, not autopilot** — Let agents use AI first, then automate
-5. **Measure from day 1** — You can't improve what you don't measure
+1. **1 级自动化提供了 80% 的价值** —— 不要试图在第一天就自动化所有事情
+2. **质量 > 数量** —— 4.5 CSAT 的 40% 自动化优于 3.5 CSAT 的 70% 自动化
+3. **知识库是瓶颈** —— AI 的质量受限于知识库的质量
+4. **从智能副驾 (Copilot) 开始，而非自动驾驶 (Autopilot)** —— 让客服先使用 AI，然后再实现自动化
+5. **从第一天开始衡量** —— 您无法改进您未衡量的事项
 
-## What's Next
+## 下一步
 
-Now let's dive into the technical implementation, starting with [AI model selection](./ai-models) — which LLM to use and when.
+现在让我们深入探讨技术实施，从 [AI 模型选择](./ai-models) 开始 —— 了解何时使用哪种大语言模型 (LLM)。

@@ -3,182 +3,182 @@ sidebar_position: 16
 title: 常见问题
 ---
 
-# Frequently Asked Questions
+# 常见问题 (Frequently Asked Questions)
 
-Common questions and misconceptions about AI-driven customer service.
+关于 AI 驱动的客服系统的常见问题和误解。
 
-## General Questions
+## 一般性问题
 
-### Will AI completely replace human agents?
+### AI 会完全取代人工客服吗？
 
-No. The goal is **augmentation, not replacement**. AI handles repetitive Tier 1 tickets (40–60% of volume), freeing humans for complex, high-value interactions. Most successful implementations maintain 50–70% of their human agent workforce, with agents handling more interesting, impactful work.
+不会。目标是 **增强，而非取代**。AI 处理重复性的第一层 (Tier 1) 工单 (占总量的 40–60%)，从而将人工解放出来，处理复杂且高价值的交互。大多数成功的实施案例都保留了 50–70% 的人工客服团队，让客服人员从事更有趣、更有影响力的工作。
 
-### How long does implementation take?
+### 实施需要多长时间？
 
-| Phase | Timeline | Deliverable |
+| 阶段 | 时间线 | 交付物 |
 |---|---|---|
-| Pilot (one channel) | 4–8 weeks | Live on chat or email |
-| Expand (multi-channel) | 2–3 months | Chat + email + portal |
-| Mature (full deployment) | 6–12 months | Omnichannel with copilot |
+| 试点 (单一渠道) | 4–8 周 | 在聊天或邮件中上线 |
+| 扩展 (多渠道) | 2–3 个月 | 聊天 + 邮件 + 门户网站 |
+| 成熟 (全面部署) | 6–12 个月 | 带有副驾驶 (Copilot) 的全渠道支持 |
 
-### What's the minimum ticket volume to make this worthwhile?
+### 达到多少工单量才值得这样做？
 
-There's no hard minimum, but economics improve dramatically with volume:
+没有硬性的最低要求，但经济效益会随着工单量的增加而显著提高：
 
-| Monthly Tickets | Recommended Approach |
+| 每月工单量 | 推荐方案 |
 |---|---|
 | < 1,000 | SaaS (Zendesk AI, Intercom Fin) |
-| 1,000–10,000 | SaaS or hybrid |
-| 10,000–100,000 | Hybrid or custom |
-| > 100,000 | Custom (maximum ROI) |
+| 1,000–10,000 | SaaS 或混合方案 |
+| 10,000–100,000 | 混合或定制方案 |
+| > 100,000 | 定制方案 (最大化 ROI) |
 
-### Will customers know they're talking to AI?
+### 客户会知道他们在和 AI 说话吗？
 
-**They should.** Transparency builds trust. Disclose AI involvement clearly but naturally:
+**应该知道。** 透明度能建立信任。清晰且自然地告知 AI 的参与：
 
-> "Hi! I'm the [Company] AI assistant. I'll help with your question, and if I can't, I'll connect you with a human agent."
+> "您好！我是 [公司名称] 的 AI 助手。我会协助您解决问题，如果我无法解决，我会为您转接人工客服。"
 
-Don't pretend to be human. Customers respect honesty, and many prefer the speed of AI for simple questions.
+不要假装是人类。客户尊重诚实，而且对于简单的问题，许多人更喜欢 AI 的响应速度。
 
-## Technical Questions
+## 技术性问题
 
-### Which LLM should I use?
+### 我应该使用哪个 LLM (大语言模型)？
 
-See the [AI Models](./ai-models) chapter for detailed guidance. Quick answer:
+请参阅 [AI 模型](./ai-models) 章节获取详细指导。简短回答：
 
-- **Starting out**: GPT-4o-mini or Claude Haiku (cheap, fast, good enough)
-- **Quality priority**: GPT-4o or Claude Sonnet
-- **Privacy requirements**: Self-hosted Llama 3.1
-- **Ultra-high volume**: Gemini Flash
+- **入门阶段**：GPT-4o-mini 或 Claude Haiku (便宜、快速、足够好)
+- **质量优先**：GPT-4o 或 Claude Sonnet
+- **隐私要求**：私有化部署的 Llama 3.1
+- **超大规模工单量**：Gemini Flash
 
-### Do I need to fine-tune a model?
+### 我需要微调 (Fine-tune) 模型吗？
 
-**Usually no.** RAG (Retrieval-Augmented Generation) gets you 80% of the value without fine-tuning. Fine-tune only when you need:
-- Very specific brand voice
-- Complex multi-step workflows
-- Domain-specific jargon handling
+**通常不需要。** RAG (检索增强生成，Retrieval-Augmented Generation) 无需微调即可为您带来 80% 的价值。仅在以下情况需要微调：
+- 非常特定的品牌声调
+- 复杂的多步骤工作流
+- 处理特定领域的专业术语
 
-### How do I prevent hallucinations?
+### 如何防止幻觉 (Hallucinations)？
 
-Multiple layers of defense:
+多层防御：
 
-1. **RAG grounding** — Only answer from retrieved knowledge base
-2. **Confidence scoring** — Route low-confidence to humans
-3. **Response validation** — Check responses against source chunks
-4. **No-promises rule** — Never commit to outcomes not in KB
-5. **Human QA sampling** — Regular review of AI responses
+1. **RAG 落地验证 (Grounding)** — 仅根据检索到的知识库内容进行回答
+2. **置信度评分** — 将低置信度的工单路由至人工
+3. **回复验证** — 根据源分块检查回复内容
+4. **不作承诺规则** — 绝不承诺知识库中未提及的结果
+5. **人工 QA 抽样** — 定期审核 AI 回复
 
-See [Quality & Safety](./quality-safety) for implementation details.
+请参阅 [质量与安全](./quality-safety) 获取实现细节。
 
-### What happens when the LLM provider goes down?
+### 当 LLM 提供商宕机时会发生什么？
 
-Design for failure:
+针对故障进行设计：
 
 ```mermaid
 flowchart LR
-    Primary[Primary LLM] -->|fail| Secondary[Secondary LLM]
-    Secondary -->|fail| Fallback[Rule-based + Queue]
-    Fallback -->|fail| Human[Full human mode]
+    Primary[主 LLM] -->|失败| Secondary[备用 LLM]
+    Secondary -->|失败| Fallback[基于规则 + 排队]
+    Fallback -->|失败| Human[全人工模式]
 ```
 
-Always have a fallback path. Queue customers for human agents rather than showing errors.
+始终要有备选路径。宁愿让客户在人工队列中等待，也不要显示错误。
 
-## Business Questions
+## 业务问题
 
-### How do I measure ROI?
+### 如何衡量 ROI (投资回报率)？
 
-See the [ROI Framework](./roi-framework) for detailed calculation. Key metrics:
+请参阅 [ROI 框架](./roi-framework) 获取详细计算方法。关键指标：
 
-- **Cost per ticket**: Traditional ($8–$15) vs AI ($0.50–$3)
-- **Resolution rate**: % of tickets handled without human
-- **Payback period**: Typically 1–6 months depending on volume
+- **单工单成本**：传统方式 ($8–$15) vs AI 方式 ($0.50–$3)
+- **解决率**：无需人工干预即可处理的工单百分比
+- **投资回收期**：通常为 1–6 个月，取决于工单量
 
-### What if customers hate it?
+### 如果客户讨厌它怎么办？
 
-Build in escape hatches:
-- Always available "talk to human" option
-- Easy escalation (no hoops to jump through)
-- Monitor CSAT closely
-- Opt-out mechanism for customers who prefer human-only
+内置“逃生舱”：
+- 始终提供“联系人工”选项
+- 便捷的升级路径 (无需重重关卡)
+- 密切监控 CSAT (客户满意度)
+- 为偏好纯人工服务的客户提供退出机制
 
-Track CSAT by channel (AI vs human). If AI CSAT drops below human CSAT by more than 0.5 points, investigate and adjust.
+按渠道 (AI vs 人工) 跟踪 CSAT。如果 AI 的 CSAT 比人工低 0.5 分以上，请进行调查并调整。
 
-### How do I handle the team's fear of job loss?
+### 如何处理团队对失业的恐惧？
 
-**Transparent communication is critical:**
+**透明的沟通至关重要：**
 
-1. **Position as copilot, not replacement** — AI handles boring stuff, humans do impactful work
-2. **Retraining investment** — Upskill agents for complex problem-solving
-3. **New roles created** — AI trainers, QA reviewers, escalation specialists
-4. **Involve the team** — Let agents help design the system
-5. **Show the data** — Most implementations maintain or grow CS teams
+1. **定位为副驾驶而非替代品** — AI 处理枯燥的任务，人类从事有影响力的工作
+2. **重新培训投入** — 提升客服人员解决复杂问题的技能
+3. **创造新角色** — AI 训练师、QA 审核员、升级专家
+4. **让团队参与** — 让客服人员协助设计系统
+5. **展示数据** — 大多数实施案例都维持或扩大了客服团队规模
 
-### What about languages we don't support?
+### 我们不支持的语言怎么办？
 
-AI dramatically expands language coverage. Modern LLMs support 50+ languages. This is one of the biggest wins: you can offer 24/7 multilingual support without hiring multilingual agents.
+AI 极大地扩展了语言覆盖范围。现代 LLM 支持 50 多种语言。这是最大的优势之一：您无需雇佣多语言客服人员即可提供 24/7 的多语言支持。
 
-## Implementation Questions
+## 实施问题
 
-### Should I build or buy?
+### 我应该自建还是购买？
 
-| Approach | Best For | Pros | Cons |
+| 方案 | 适用对象 | 优点 | 缺点 |
 |---|---|---|---|
-| **SaaS** (Zendesk AI, Intercom Fin) | < 10K tickets/month | Fast setup, low effort | Limited customization |
-| **Build on APIs** | > 100K tickets/month | Full control, lowest per-ticket cost | Requires engineering |
-| **Hybrid** | 10K–100K tickets/month | Balance of control and ease | Integration complexity |
+| **SaaS** (Zendesk AI, Intercom Fin) | 每月工单量 < 10K | 设置快，投入低 | 定制化有限 |
+| **基于 API 构建** | 每月工单量 > 100K | 全面控制，单工单成本最低 | 需要工程投入 |
+| **混合方案** | 每月工单量 10K–100K | 兼顾控制力与便捷性 | 集成复杂性 |
 
-### What knowledge base do I need?
+### 我需要什么样的知识库？
 
-Start with what you have:
-1. Help center / FAQ (highest value)
-2. Product documentation
-3. Policy documents
-4. Past ticket resolutions (Phase 2)
+从现有的内容开始：
+1. 帮助中心 / 常见问题解答 (价值最高)
+2. 产品文档
+3. 政策文件
+4. 历史工单解决方案 (第二阶段)
 
-See [Knowledge Base Engineering](./knowledge-base) for detailed guidance.
+请参阅 [知识库工程](./knowledge-base) 获取详细指导。
 
-### How do I start?
+### 如何开始？
 
-**Recommended pilot approach:**
+**推荐的试点方法：**
 
-1. **Week 1–2**: Audit current tickets, identify Tier 1 candidates
-2. **Week 3–4**: Prepare knowledge base, set up AI pipeline
-3. **Week 5–6**: Pilot on one channel (chat recommended)
-4. **Week 7–8**: Measure, iterate, expand
+1. **第 1–2 周**：审计当前工单，识别适合 AI 处理的第一层工单
+2. **第 3–4 周**：准备知识库，搭建 AI 流水线
+3. **第 5–6 周**：在单一渠道 (推荐聊天) 进行试点
+4. **第 7–8 周**：衡量、迭代、扩展
 
-Start small, measure rigorously, expand based on data.
+从小处着手，严格衡量，根据数据进行扩展。
 
-## Troubleshooting
+## 故障排除
 
-### AI resolution rate is lower than expected
+### AI 解决率低于预期
 
-| Possible Cause | Fix |
+| 可能原因 | 修复措施 |
 |---|---|
-| Knowledge base gaps | Audit unanswered questions, add content |
-| Poor chunking | Adjust chunk size and overlap |
-| Wrong model | Try a more capable model |
-| Low confidence threshold | Calibrate threshold (but don't lower too much) |
-| Complex ticket mix | Review if Tier 1 % matches assumptions |
+| 知识库缺口 | 审计未回答的问题，添加内容 |
+| 分块效果差 | 调整分块大小和重叠度 |
+| 模型选择错误 | 尝试能力更强的模型 |
+| 置信度阈值过低 | 校准阈值 (但不要降得太低) |
+| 工单组合复杂 | 审核第一层工单的比例是否符合假设 |
 
-### CSAT is lower for AI than human
+### AI 的 CSAT 低于人工
 
-| Possible Cause | Fix |
+| 可能原因 | 修复措施 |
 |---|---|
-| AI not resolving fully | Improve KB coverage |
-| Customers want human | Make escalation easier |
-| Tone issues | Adjust system prompt |
-| Slow responses | Optimize pipeline latency |
-| Wrong answers | Review accuracy, fix hallucinations |
+| AI 未能完全解决问题 | 提高知识库覆盖率 |
+| 客户想要人工服务 | 简化升级流程 |
+| 语气问题 | 调整系统提示词 |
+| 响应缓慢 | 优化流水线延迟 |
+| 答案错误 | 审核准确性，修复幻觉 |
 
-### Escalation rate is too high
+### 升级率过高
 
-| Possible Cause | Fix |
+| 可能原因 | 修复措施 |
 |---|---|
-| Confidence threshold too high | Calibrate (carefully) |
-| KB doesn't cover common questions | Add missing content |
-| AI giving up too easily | Adjust escalation triggers |
-| Customer preference for human | Check if AI disclosure is appropriate |
+| 置信度阈值过高 | (谨慎地) 进行校准 |
+| 知识库未覆盖常见问题 | 添加缺失的内容 |
+| AI 太容易放弃 | 调整升级触发器 |
+| 客户偏好人工 | 检查 AI 告知语言是否合适 |
 
-## What's Next
+## 下一步
 
-Ready to start? Go back to the [Introduction](/) and begin with the economic analysis, or jump straight to the [Architecture](./architecture) if you're technical.
+准备好开始了吗？返回 [简介](/) 从经济分析开始，或者如果您是技术人员，直接跳转到 [架构](./architecture)。

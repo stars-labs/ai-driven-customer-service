@@ -3,208 +3,208 @@ sidebar_position: 15
 title: 风险评估
 ---
 
-# Risk Assessment & Governance
+# 风险评估与治理 (Risk Assessment & Governance)
 
-What can go wrong, how to prevent it, and how to respond when things go sideways.
+可能出现什么问题、如何预防，以及在出现偏差时如何应对。
 
-## Risk Matrix
+## 风险矩阵 (Risk Matrix)
 
 ```mermaid
 flowchart TB
-    subgraph High["High Impact"]
-        H1[Hallucination<br/>wrong information]
-        H2[Data breach<br/>PII exposure]
-        H3[Brand damage<br/>viral complaint]
-        H4[Compliance violation<br/>regulatory fine]
+    subgraph High["高影响"]
+        H1[幻觉<br/>错误信息]
+        H2[数据泄露<br/>PII 暴露]
+        H3[品牌受损<br/>病毒式投诉]
+        H4[合规违规<br/>监管罚款]
     end
 
-    subgraph Medium["Medium Impact"]
-        M1[Customer frustration<br/>poor experience]
-        M2[Agent resistance<br/>adoption failure]
-        M3[KB staleness<br/>outdated answers]
-        M4[Vendor lock-in<br/>migration cost]
+    subgraph Medium["中影响"]
+        M1[客户沮丧<br/>体验不佳]
+        M2[员工抵触<br/>采用失败]
+        M3[知识库陈旧<br/>答案过时]
+        M4[供应商锁定<br/>迁移成本]
     end
 
-    subgraph Low["Low Impact"]
-        L1[Slow responses<br/>latency issues]
-        L2[Wrong routing<br/>misdirected tickets]
-        L3[Inconsistent tone<br/>brand voice drift]
+    subgraph Low["低影响"]
+        L1[响应缓慢<br/>延迟问题]
+        L2[路由错误<br/>工单误导]
+        L3[语气不一致<br/>品牌声调偏离]
     end
 ```
 
-## Detailed Risk Analysis
+## 详细风险分析
 
-### Critical Risks
+### 关键风险 (Critical Risks)
 
-| Risk | Probability | Impact | Mitigation | Contingency |
+| 风险 | 可能性 | 影响 | 缓解措施 | 应急预案 |
 |---|---|---|---|---|
-| **Hallucination causes financial harm** | Medium | Critical | Grounding, validation, no promises | Customer remediation fund, legal review |
-| **PII leak in AI response** | Low | Critical | PII detection, masking, audit logs | Incident response, notification process |
-| **Compliance violation (GDPR, etc.)** | Low | Critical | Legal review, data handling policies | DPO involvement, regulatory notification |
-| **AI gives dangerous advice** | Very Low | Critical | Safety keywords, escalation triggers | Immediate pause, public statement |
+| **幻觉导致财务损失** | 中 | 关键 | 落地验证 (Grounding)、校验、不作承诺 | 客户补救基金、法律审查 |
+| **AI 回复中泄露 PII** | 低 | 关键 | PII (个人身份信息) 检测、脱敏、审计日志 | 事件响应、通知流程 |
+| **合规违规 (GDPR 等)** | 低 | 关键 | 法律审查、数据处理政策 | DPO (数据保护官) 介入、监管通知 |
+| **AI 给出危险建议** | 极低 | 关键 | 安全关键词、升级触发器 | 立即暂停、发布公开声明 |
 
-### High Risks
+### 高风险 (High Risks)
 
-| Risk | Probability | Impact | Mitigation | Contingency |
+| 风险 | 可能性 | 影响 | 缓解措施 | 应急预案 |
 |---|---|---|---|---|
-| **Customer backlash against AI** | Medium | High | Clear disclosure, easy human access | Pause AI, human-only option |
-| **Agent job displacement fear** | High | High | Position as copilot, retrain for complex | Transparent communication, retraining |
-| **Knowledge base becomes outdated** | High | Medium | Automated freshness checks, update pipeline | Manual review sprint |
-| **LLM provider outage** | Medium | High | Multi-provider fallback, queue to human | Degraded mode, rule-based responses |
+| **客户对 AI 的抵触** | 中 | 高 | 明确告知、便捷的人工接入 | 暂停 AI、仅限人工选项 |
+| **员工对失业的恐惧** | 高 | 高 | 定位为副驾驶 (Copilot)、针对复杂任务重新培训 | 透明沟通、重新培训 |
+| **知识库过时** | 高 | 中 | 自动新鲜度检查、更新流水线 | 手动审核冲刺 |
+| **LLM 提供商宕机** | 中 | 高 | 多供应商备份、排队至人工 | 降级模式、基于规则的回复 |
 
-### Medium Risks
+### 中风险 (Medium Risks)
 
-| Risk | Probability | Impact | Mitigation | Contingency |
+| 风险 | 可能性 | 影响 | 缓解措施 | 应急预案 |
 |---|---|---|---|---|
-| **Lower than expected resolution rate** | Medium | Medium | Pilot program, realistic targets | Adjust scope, invest in KB |
-| **Higher than expected costs** | Low | Medium | Cost monitoring, budget alerts | Model optimization, caching |
-| **Integration complexity** | Medium | Medium | Start with one channel, iterate | SaaS solutions as bridge |
-| **Agent adoption resistance** | High | Medium | Training, involvement in design | Champions program, incentives |
+| **解决率低于预期** | 中 | 中 | 试点计划、设定现实目标 | 调整范围、加大知识库投入 |
+| **成本高于预期** | 低 | 中 | 成本监控、预算警报 | 模型优化、缓存 |
+| **集成复杂性** | 中 | 中 | 从单一渠道开始，逐步迭代 | 使用 SaaS 解决方案作为过渡 |
+| **员工采用抵触** | 高 | 中 | 培训、参与设计 | 倡导者计划、激励措施 |
 
-## Governance Framework
+## 治理框架 (Governance Framework)
 
-### Decision Authority Matrix
+### 决策权限矩阵
 
-| Decision | Who Decides | Approval Required |
+| 决策 | 决策者 | 需要批准 |
 |---|---|---|
-| Deploy AI to new channel | Product + CS Lead | VP Customer Experience |
-| Change confidence threshold | Engineering | CS Lead |
-| Update system prompt | Engineering | CS Lead review |
-| Add new KB source | Content Team | KB Manager |
-| Pause AI operations | Anyone (emergency) | Notify leadership within 1 hour |
-| Customer compensation (AI error) | CS Lead | Finance if > $500 |
-| Model/provider change | Engineering | VP Engineering |
+| 将 AI 部署到新渠道 | 产品 + 客服主管 | 客户体验副总裁 |
+| 更改置信度阈值 | 工程团队 | 客服主管 |
+| 更新系统提示词 | 工程团队 | 客服主管审核 |
+| 添加新知识库源 | 内容团队 | 知识库经理 |
+| 暂停 AI 运营 | 任何人 (紧急情况) | 1 小时内通知领导层 |
+| 客户赔偿 (AI 错误) | 客服主管 | 财务 (若 > $500) |
+| 模型/提供商变更 | 工程团队 | 工程副总裁 |
 
-### Escalation Path
+### 升级路径
 
 ```mermaid
 flowchart TB
-    Issue[Issue Detected] --> Severity{Severity?}
+    Issue[检测到问题] --> Severity{严重程度?}
 
-    Severity -->|Critical<br/>hallucination, PII, compliance| L3[VP + Legal<br/>immediate pause]
-    Severity -->|High<br/>customer impact, brand| L2[CS Lead + Product<br/>within 1 hour]
-    Severity -->|Medium<br/>quality, cost| L1[Engineering + CS<br/>within 24 hours]
-    Severity -->|Low<br/>cosmetic, minor| L0[Backlog<br/>next sprint]
+    Severity -->|关键<br/>幻觉, PII, 合规| L3[副总裁 + 法务<br/>立即暂停]
+    Severity -->|高<br/>客户影响, 品牌| L2[客服主管 + 产品<br/>1 小时内]
+    Severity -->|中<br/>质量, 成本| L1[工程 + 客服<br/>24 小时内]
+    Severity -->|低<br/>外观, 轻微| L0[待办事项<br/>下个迭代]
 
-    L3 --> R1[Root cause analysis<br/>within 48 hours]
-    L2 --> R2[Action plan<br/>within 24 hours]
-    L1 --> R3[Fix and monitor]
-    L0 --> R4[Scheduled fix]
+    L3 --> R1[根因分析<br/>48 小时内]
+    L2 --> R2[行动计划<br/>24 小时内]
+    L1 --> R3[修复并监控]
+    L0 --> R4[计划修复]
 ```
 
-## Incident Response Playbook
+## 事件响应手册 (Incident Response Playbook)
 
-### Playbook 1: Hallucination Incident
-
-```
-TRIGGER: AI provides factually incorrect information that reaches customer
-
-SEVERITY: Critical
-
-IMMEDIATE ACTIONS (within 15 minutes):
-1. Pause AI for affected category/channel
-2. Review conversation transcript
-3. Identify if customer took action based on wrong info
-4. If financial impact: escalate to VP + Legal
-
-SHORT-TERM (within 2 hours):
-5. Correct the knowledge base article
-6. Review similar articles for same issue
-7. Proactive outreach to affected customer
-8. Document incident
-
-LONG-TERM (within 1 week):
-9. Root cause analysis
-10. Add validation rule to prevent recurrence
-11. Update monitoring/alerting
-12. Share learnings with team
-```
-
-### Playbook 2: Data Exposure Incident
+### 手册 1：幻觉事件
 
 ```
-TRIGGER: AI exposes PII or sensitive data in response
+触发条件：AI 提供了事实错误的信息并传达给了客户
 
-SEVERITY: Critical
+严重程度：关键
 
-IMMEDIATE ACTIONS (within 5 minutes):
-1. Pause all AI operations
-2. Isolate affected conversation
-3. Notify Security team
-4. Notify Legal/Compliance
+立即行动 (15 分钟内)：
+1. 暂停受影响类别/渠道的 AI
+2. 审核对话记录
+3. 确定客户是否根据错误信息采取了行动
+4. 若有财务影响：升级至副总裁 + 法务
 
-SHORT-TERM (within 1 hour):
-5. Assess scope of exposure
-6. Identify affected customers
-7. Begin notification process if required (GDPR: 72 hours)
-8. Fix the vulnerability
+短期行动 (2 小时内)：
+5. 纠正知识库文章
+6. 审核类似文章是否存在相同问题
+7. 主动联系受影响客户
+8. 记录事件
 
-LONG-TERM (within 1 week):
-9. Full security audit
-10. Update PII detection rules
-11. Review all similar conversation patterns
-12. Regulatory notification if required
+长期行动 (1 周内)：
+9. 根因分析
+10. 添加验证规则以防止再次发生
+11. 更新监控/警报
+12. 与团队分享经验教训
 ```
 
-### Playbook 3: Customer Backlash
+### 手册 2：数据泄露事件
 
 ```
-TRIGGER: Viral complaint about AI customer service
+触发条件：AI 在回复中暴露了 PII 或敏感数据
 
-SEVERITY: High
+严重程度：关键
 
-IMMEDIATE ACTIONS (within 30 minutes):
-1. Monitor social media mentions
-2. Contact complainant directly (human agent)
-3. Offer resolution + goodwill gesture
-4. Prepare public response
+立即行动 (5 分钟内)：
+1. 暂停所有 AI 运营
+2. 隔离受影响的对话
+3. 通知安全团队
+4. 通知法务/合规团队
 
-SHORT-TERM (within 4 hours):
-5. Review the specific conversation
-6. Identify systemic issue if any
-7. Adjust AI behavior if needed
-8. Post public response acknowledging issue
+短期行动 (1 小时内)：
+5. 评估暴露范围
+6. 识别受影响客户
+7. 若有要求，开始通知流程 (GDPR：72 小时)
+8. 修复漏洞
 
-LONG-TERM (within 1 week):
-9. Review AI disclosure language
-10. Consider opt-out mechanism
-11. Survey customers on AI preference
-12. Adjust strategy based on feedback
+长期行动 (1 周内)：
+9. 全面安全审计
+10. 更新 PII 检测规则
+11. 审核所有类似的对话模式
+12. 若有要求，通知监管机构
 ```
 
-## Compliance Checklist
+### 手册 3：客户抵触
 
-### GDPR Compliance
+```
+触发条件：关于 AI 客服的病毒式投诉
 
-| Requirement | Implementation |
+严重程度：高
+
+立即行动 (30 分钟内)：
+1. 监控社交媒体提及
+2. 直接联系投诉人 (人工客服)
+3. 提供解决方案 + 补偿方案
+4. 准备公开回应
+
+短期行动 (4 小时内)：
+5. 审核特定对话
+6. 识别是否存在系统性问题
+7. 根据需要调整 AI 行为
+8. 发布公开回应，承认问题
+
+长期行动 (1 周内)：
+9. 审核 AI 告知语言
+10. 考虑退出机制
+11. 调查客户对 AI 的偏好
+12. 根据反馈调整策略
+```
+
+## 合规检查清单
+
+### GDPR 合规
+
+| 要求 | 实现方式 |
 |---|---|
-| Right to access | Customer can request all AI conversation data |
-| Right to erasure | Delete conversation data on request |
-| Right to human review | Always available escalation path |
-| Data minimization | Only process necessary customer data |
-| Transparency | Disclose AI involvement |
-| Data processing agreement | DPA with AI/LLM providers |
+| 访问权 | 客户可以请求所有 AI 对话数据 |
+| 删除权 | 根据请求删除对话数据 |
+| 人工审核权 | 始终可用的升级路径 |
+| 数据最小化 | 仅处理必要的客户数据 |
+| 透明度 | 告知 AI 的参与 |
+| 数据处理协议 | 与 AI/LLM 提供商签署 DPA |
 
-### Industry-Specific
+### 行业特定要求
 
-| Industry | Key Requirements |
+| 行业 | 关键要求 |
 |---|---|
-| Healthcare (HIPAA) | BAA with providers, no PHI in prompts |
-| Financial (PCI/SOC) | No payment data in AI, audit logging |
-| Legal | No legal advice, disclaimers |
-| Children (COPPA) | Age verification, parental consent |
+| 医疗 (HIPAA) | 与提供商签署 BAA，提示词中不含 PHI (受保护健康信息) |
+| 金融 (PCI/SOC) | AI 中不含支付数据，审计日志 |
+| 法律 | 不提供法律建议，免责声明 |
+| 儿童 (COPPA) | 年龄验证，家长同意 |
 
-## Risk Monitoring Dashboard
+## 风险监控仪表盘
 
-| Metric | Green | Yellow | Red |
+| 指标 | 绿色 | 黄色 | 红色 |
 |---|---|---|---|
-| Hallucination rate | < 1% | 1–2% | > 2% |
-| Escalation accuracy | > 85% | 70–85% | < 70% |
+| 幻觉率 | < 1% | 1–2% | > 2% |
+| 升级准确性 | > 85% | 70–85% | < 70% |
 | CSAT (AI) | > 4.0 | 3.5–4.0 | < 3.5 |
-| PII incidents | 0 | 1 (contained) | > 1 |
-| Compliance violations | 0 | 0 | Any |
-| Customer complaints | < 5/week | 5–20/week | > 20/week |
+| PII 事件 | 0 | 1 (已控制) | > 1 |
+| 合规违规 | 0 | 0 | 任何 |
+| 客户投诉 | < 5 次/周 | 5–20 次/周 | > 20 次/周 |
 
-## What's Next
+## 下一步
 
-Finally, check the [FAQ](./faq) for answers to common questions and misconceptions about AI customer service.
+最后，请查看 [常见问题解答 (FAQ)](./faq)，了解关于 AI 客服的常见问题和误解。

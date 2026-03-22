@@ -3,153 +3,153 @@ sidebar_position: 4
 title: 成本对比
 ---
 
-# Cost Comparison: Human vs AI vs Hybrid
+# 成本对比：人工 vs AI vs 混合模式
 
-A head-to-head analysis of the three models for customer service delivery.
+对三种客户服务交付模式的正面分析。
 
-## Model Definitions
+## 模式定义
 
-| Model | Description |
+| 模式 | 描述 |
 |---|---|
-| **Traditional (Human Only)** | 100% human agents handle all ticket tiers |
-| **AI-Augmented (Hybrid)** | AI handles Tier 1, assists Tier 2, humans handle Tier 3 |
-| **AI-First (Full Automation)** | AI handles Tier 1 + 2, humans only for Tier 3 + oversight |
+| **传统模式 (仅限人工)** | 100% 人工代理处理所有工单层级 |
+| **AI 增强型 (混合模式)** | AI 处理 Tier 1，辅助 Tier 2，人工处理 Tier 3 |
+| **AI 优先 (全自动化)** | AI 处理 Tier 1 + 2，人工仅用于 Tier 3 + 监督 |
 
-## Cost Per Ticket Analysis
+## 每张工单成本分析
 
-### Breakdown by Component
+### 按组件拆解
 
 ```mermaid
 flowchart TB
-    subgraph Traditional["Traditional: $8–$15/ticket"]
-        T1[Labor: $6–$11]
-        T2[Tools: $0.50–$1]
-        T3[Overhead: $1.50–$3]
+    subgraph Traditional["传统模式: $8–$15/工单"]
+        T1[人力: $6–$11]
+        T2[工具: $0.50–$1]
+        T3[开销: $1.50–$3]
     end
 
-    subgraph Hybrid["Hybrid: $2–$5/ticket"]
-        H1[AI Processing: $0.10–$0.30]
-        H2[Human (30%): $1.50–$3.50]
-        H3[Infrastructure: $0.20–$0.50]
-        H4[Knowledge Base: $0.20–$0.70]
+    subgraph Hybrid["混合模式: $2–$5/工单"]
+        H1[AI 处理: $0.10–$0.30]
+        H2[人工 (30%): $1.50–$3.50]
+        H3[基础设施: $0.20–$0.50]
+        H4[知识库: $0.20–$0.70]
     end
 
-    subgraph AIFirst["AI-First: $0.30–$1/ticket"]
-        A1[AI Processing: $0.10–$0.30]
-        A2[Human (10%): $0.10–$0.40]
-        A3[Infrastructure: $0.05–$0.20]
-        A4[Knowledge Base: $0.05–$0.10]
+    subgraph AIFirst["AI 优先: $0.30–$1/工单"]
+        A1[AI 处理: $0.10–$0.30]
+        A2[人工 (10%): $0.10–$0.40]
+        A3[基础设施: $0.05–$0.20]
+        A4[知识库: $0.05–$0.10]
     end
 ```
 
-### Detailed Cost Matrix
+### 详细成本矩阵
 
-| Cost Component | Traditional | Hybrid | AI-First |
+| 成本组件 | 传统模式 | 混合模式 | AI 优先 |
 |---|---|---|---|
-| **Labor** | $6.00–$11.00 | $1.50–$3.50 | $0.10–$0.40 |
-| Agent salary (per ticket) | $5.00–$9.00 | — | — |
-| Benefits & overhead (30%) | $1.00–$2.00 | — | — |
-| Human review (per ticket) | — | $1.50–$3.50 | $0.10–$0.40 |
-| **Technology** | $0.50–$1.00 | $0.30–$0.70 | $0.15–$0.30 |
-| Ticketing software | $0.30–$0.60 | $0.20–$0.40 | $0.10–$0.20 |
-| AI API costs | — | $0.10–$0.30 | $0.05–$0.10 |
-| **Infrastructure** | $0.50–$1.00 | $0.20–$0.50 | $0.05–$0.20 |
-| Vector DB / Search | — | $0.10–$0.30 | $0.03–$0.10 |
-| Compute | $0.50–$1.00 | $0.10–$0.20 | $0.02–$0.10 |
-| **Knowledge Management** | $1.00–$2.00 | $0.20–$0.70 | $0.05–$0.10 |
-| Training / Onboarding | $0.50–$1.00 | — | — |
-| KB maintenance | $0.50–$1.00 | $0.20–$0.70 | $0.05–$0.10 |
-| **Total Per Ticket** | **$8.00–$15.00** | **$2.20–$5.40** | **$0.35–$1.00** |
+| **人力** | $6.00–$11.00 | $1.50–$3.50 | $0.10–$0.40 |
+| 代理薪资 (每张工单) | $5.00–$9.00 | — | — |
+| 福利与开销 (30%) | $1.00–$2.00 | — | — |
+| 人工审核 (每张工单) | — | $1.50–$3.50 | $0.10–$0.40 |
+| **技术** | $0.50–$1.00 | $0.30–$0.70 | $0.15–$0.30 |
+| 工单软件 | $0.30–$0.60 | $0.20–$0.40 | $0.10–$0.20 |
+| AI API 成本 | — | $0.10–$0.30 | $0.05–$0.10 |
+| **基础设施** | $0.50–$1.00 | $0.20–$0.50 | $0.05–$0.20 |
+| 向量数据库 / 搜索 | — | $0.10–$0.30 | $0.03–$0.10 |
+| 计算资源 | $0.50–$1.00 | $0.10–$0.20 | $0.02–$0.10 |
+| **知识管理** | $1.00–$2.00 | $0.20–$0.70 | $0.05–$0.10 |
+| 培训 / 入职 | $0.50–$1.00 | — | — |
+| KB (知识库) 维护 | $0.50–$1.00 | $0.20–$0.70 | $0.05–$0.10 |
+| **每张工单总计** | **$8.00–$15.00** | **$2.20–$5.40** | **$0.35–$1.00** |
 
-## Annual Cost Projection
+## 年度成本预测
 
-Assumptions: 50,000 tickets/year, 10% annual growth
+假设：每年 50,000 张工单，年增长率 10%
 
-| Year | Tickets | Traditional | Hybrid | AI-First |
+| 年份 | 工单量 | 传统模式 | 混合模式 | AI 优先 |
 |---|---|---|---|---|
-| Year 1 | 50,000 | $500K–$750K | $150K–$270K | $25K–$50K |
-| Year 2 | 55,000 | $550K–$825K | $155K–$280K | $27K–$53K |
-| Year 3 | 60,500 | $605K–$908K | $160K–$290K | $29K–$56K |
-| Year 4 | 66,550 | $666K–$998K | $166K–$301K | $31K–$59K |
-| Year 5 | 73,205 | $732K–$1.1M | $172K–$312K | $33K–$62K |
-| **5-Year Total** | **305,255** | **$3.05M–$4.58M** | **$803K–$1.45M** | **$145K–$280K** |
+| 第 1 年 | 50,000 | $500K–$750K | $150K–$270K | $25K–$50K |
+| 第 2 年 | 55,000 | $550K–$825K | $155K–$280K | $27K–$53K |
+| 第 3 年 | 60,500 | $605K–$908K | $160K–$290K | $29K–$56K |
+| 第 4 年 | 66,550 | $666K–$998K | $166K–$301K | $31K–$59K |
+| 第 5 年 | 73,205 | $732K–$1.1M | $172K–$312K | $33K–$62K |
+| **5 年总计** | **305,255** | **$3.05M–$4.58M** | **$803K–$1.45M** | **$145K–$280K** |
 
 ```mermaid
 flowchart TB
-    subgraph Traditional["Traditional: $8–$15/ticket"]
-        T1[Labor: $6–$11]
-        T2[Tools: $0.50–$1]
-        T3[Overhead: $1.50–$3]
+    subgraph Traditional["传统模式: $8–$15/工单"]
+        T1[人力: $6–$11]
+        T2[工具: $0.50–$1]
+        T3[开销: $1.50–$3]
     end
 
-    subgraph Hybrid["Hybrid: $2–$5/ticket"]
-        H1[AI Processing: $0.10–$0.30]
-        H2[Human (30%): $1.50–$3.50]
-        H3[Infrastructure: $0.20–$0.50]
-        H4[Knowledge Base: $0.20–$0.70]
+    subgraph Hybrid["混合模式: $2–$5/工单"]
+        H1[AI 处理: $0.10–$0.30]
+        H2[人工 (30%): $1.50–$3.50]
+        H3[基础设施: $0.20–$0.50]
+        H4[知识库: $0.20–$0.70]
     end
 
-    subgraph AIFirst["AI-First: $0.30–$1/ticket"]
-        A1[AI Processing: $0.10–$0.30]
-        A2[Human (10%): $0.10–$0.40]
-        A3[Infrastructure: $0.05–$0.20]
-        A4[Knowledge Base: $0.05–$0.10]
+    subgraph AIFirst["AI 优先: $0.30–$1/工单"]
+        A1[AI 处理: $0.10–$0.30]
+        A2[人工 (10%): $0.10–$0.40]
+        A3[基础设施: $0.05–$0.20]
+        A4[知识库: $0.05–$0.10]
     end
 ```
 
-## The Hidden Costs
+## 隐藏成本
 
-### Traditional Model Hidden Costs
+### 传统模式隐藏成本
 
-| Hidden Cost | Annual Impact | Notes |
+| 隐藏成本 | 年度影响 | 备注 |
 |---|---|---|
-| Agent turnover | $45K–$75K | Recruiting, training, productivity loss |
-| Quality inconsistency | $20K–$50K | Rework, escalations, CSAT impact |
-| Coverage gaps | $30K–$60K | After-hours outsourcing, overtime |
-| Knowledge silos | $15K–$30K | Tribal knowledge, onboarding delays |
+| 代理流失 | $45K–$75K | 招聘、培训、生产力损失 |
+| 质量不一致 | $20K–$50K | 返工、升级、CSAT (客户满意度) 影响 |
+| 覆盖缺口 | $30K–$60K | 非工作时间外包、加班费 |
+| 知识孤岛 | $15K–$30K | 碎片化知识、入职延迟 |
 
-### AI Model Hidden Costs
+### AI 模式隐藏成本
 
-| Hidden Cost | Annual Impact | Notes |
+| 隐藏成本 | 年度影响 | 备注 |
 |---|---|---|
-| Knowledge base maintenance | $20K–$40K | Content updates, accuracy verification |
-| Model drift / retraining | $10K–$30K | Quarterly fine-tuning, prompt updates |
-| Integration maintenance | $15K–$25K | API changes, webhook failures |
-| Human oversight | $30K–$50K | QA reviews, escalation handling |
+| 知识库维护 | $20K–$40K | 内容更新、准确性验证 |
+| 模型漂移 / 重新训练 | $10K–$30K | 季度微调、提示词更新 |
+| 集成维护 | $15K–$25K | API 变更、webhook 故障 |
+| 人工监督 | $30K–$50K | QA (质量保证) 审核、升级处理 |
 
-:::warning Don't Forget the Transition Cost
-Year 1 of AI implementation includes significant setup costs: knowledge base creation ($20K–$50K), integration development ($30K–$80K), and change management ($10K–$30K). These are amortized over subsequent years.
+:::warning 不要忘记转型成本
+AI 实施的第一年包括显著的启动成本：知识库创建 ($20K–$50K)、集成开发 ($30K–$80K) 以及变革管理 ($10K–$30K)。这些成本将在后续年份摊销。
 :::
 
-## Quality Comparison
+## 质量对比
 
-Cost isn't everything. Let's compare quality metrics:
+成本并非一切。让我们对比一下质量指标：
 
-| Metric | Traditional | Hybrid | AI-First |
+| 指标 | 传统模式 | 混合模式 | AI 优先 |
 |---|---|---|---|
-| First response time | 4–24 hours | < 1 minute | < 10 seconds |
-| Resolution time (Tier 1) | 12–48 hours | < 5 minutes | < 2 minutes |
-| 24/7 availability | ❌ (expensive) | ✅ | ✅ |
-| Consistency | Variable | High | Very High |
+| 首次响应时间 | 4–24 小时 | < 1 分钟 | < 10 秒 |
+| 解决时间 (Tier 1) | 12–48 小时 | < 5 分钟 | < 2 分钟 |
+| 24/7 可用性 | ❌ (昂贵) | ✅ | ✅ |
+| 一致性 | 波动 | 高 | 极高 |
 | CSAT (Tier 1) | 3.5–4.0 | 4.0–4.5 | 4.0–4.5 |
 | CSAT (Tier 3) | 4.0–4.5 | 4.2–4.7 | 4.0–4.5 |
-| First contact resolution | 65% | 75% | 70% |
-| Escalation accuracy | N/A | 85% | 80% |
+| 首次联系解决率 | 65% | 75% | 70% |
+| 升级准确率 | N/A | 85% | 80% |
 
-## Break-Even Analysis
+## 盈亏平衡分析
 
-When does the investment in AI CS pay for itself?
+对 AI 客服的投资何时能收回成本？
 
-| Scenario | Setup Cost | Monthly Savings | Break-Even |
+| 场景 | 启动成本 | 每月节省 | 盈亏平衡点 |
 |---|---|---|---|
-| Small (10K tickets/mo) | $50K–$100K | $25K–$60K | 2–4 months |
-| Medium (50K tickets/mo) | $100K–$200K | $125K–$300K | 1–2 months |
-| Large (200K tickets/mo) | $200K–$400K | $500K–$1.2M | < 1 month |
+| 小型 (10K 工单/月) | $50K–$100K | $25K–$60K | 2–4 个月 |
+| 中型 (50K 工单/月) | $100K–$200K | $125K–$300K | 1–2 个月 |
+| 大型 (200K 工单/月) | $200K–$400K | $500K–$1.2M | < 1 个月 |
 
-:::tip The Scaling Advantage
-AI CS has **negative marginal cost scaling** — as volume increases, cost per ticket decreases due to amortized infrastructure and knowledge base costs. Traditional CS has **positive marginal cost** — more tickets = more agents.
+:::tip 规模化优势
+AI 客服具有**负边际成本扩展**特性 —— 随着业务量的增加，由于基础设施和知识库成本的摊销，每张工单的成本会降低。传统客服具有**正边际成本** —— 更多工单 = 更多代理。
 :::
 
-## What's Next
+## 下一步
 
-For a detailed 5-year financial model including all costs (infrastructure, training, maintenance, scaling), see the [TCO Model](./tco-model).
+有关包含所有成本 (基础设施、培训、维护、扩展) 的详细 5 年财务模型，请参阅 [TCO 模型](./tco-model)。
