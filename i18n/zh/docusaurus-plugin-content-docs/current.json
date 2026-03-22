@@ -1,0 +1,86 @@
+{
+  "version.label": {
+    "message": "当前版本",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Economic Analysis": {
+    "message": "经济分析",
+    "description": "The label for category 'Economic Analysis' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Technical Architecture": {
+    "message": "技术架构",
+    "description": "The label for category 'Technical Architecture' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Implementation": {
+    "message": "实施指南",
+    "description": "The label for category 'Implementation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Risk & Governance": {
+    "message": "风险与治理",
+    "description": "The label for category 'Risk & Governance' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Introduction": {
+    "message": "简介",
+    "description": "The label for doc 'Introduction' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Architecture Overview": {
+    "message": "架构概览",
+    "description": "The label for doc 'Architecture Overview' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Current CS Landscape": {
+    "message": "当前客服现状",
+    "description": "The label for doc 'Current CS Landscape' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Cost Comparison": {
+    "message": "成本对比",
+    "description": "The label for doc 'Cost Comparison' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.TCO Model": {
+    "message": "总体拥有成本模型",
+    "description": "The label for doc 'TCO Model' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.ROI Framework": {
+    "message": "投资回报框架",
+    "description": "The label for doc 'ROI Framework' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Case Studies": {
+    "message": "案例研究",
+    "description": "The label for doc 'Case Studies' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.AI Models & Selection": {
+    "message": "AI 模型与选择",
+    "description": "The label for doc 'AI Models & Selection' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.RAG Architecture": {
+    "message": "RAG 架构",
+    "description": "The label for doc 'RAG Architecture' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Integration Patterns": {
+    "message": "集成模式",
+    "description": "The label for doc 'Integration Patterns' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Human Handoff Design": {
+    "message": "人工转接设计",
+    "description": "The label for doc 'Human Handoff Design' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Quality & Safety": {
+    "message": "质量与安全",
+    "description": "The label for doc 'Quality & Safety' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Knowledge Base Engineering": {
+    "message": "知识库工程",
+    "description": "The label for doc 'Knowledge Base Engineering' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Monitoring & Evaluation": {
+    "message": "监控与评估",
+    "description": "The label for doc 'Monitoring & Evaluation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Risk Assessment": {
+    "message": "风险评估",
+    "description": "The label for doc 'Risk Assessment' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.FAQ": {
+    "message": "常见问题",
+    "description": "The label for doc 'FAQ' in sidebar 'tutorialSidebar'"
+  }
+}

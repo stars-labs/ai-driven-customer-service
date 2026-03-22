@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "AI 驱动客服",
+    "description": "The title in the navbar"
+  },
+  "item.label.Guide": {
+    "message": "指南",
+    "description": "Navbar item with label Guide"
+  },
+  "item.label.Case Studies": {
+    "message": "案例研究",
+    "description": "Navbar item with label Case Studies"
+  }
+}

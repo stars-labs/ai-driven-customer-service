@@ -1,0 +1,50 @@
+{
+  "link.title.Analysis": {
+    "message": "分析",
+    "description": "The title of the footer links column with title=Analysis in the footer"
+  },
+  "link.title.Implementation": {
+    "message": "实施",
+    "description": "The title of the footer links column with title=Implementation in the footer"
+  },
+  "link.title.Resources": {
+    "message": "资源",
+    "description": "The title of the footer links column with title=Resources in the footer"
+  },
+  "link.item.label.Introduction": {
+    "message": "简介",
+    "description": "The label of footer link with label=Introduction linking to /"
+  },
+  "link.item.label.Cost Comparison": {
+    "message": "成本对比",
+    "description": "The label of footer link with label=Cost Comparison linking to /cost-comparison"
+  },
+  "link.item.label.TCO Model": {
+    "message": "总体拥有成本模型",
+    "description": "The label of footer link with label=TCO Model linking to /tco-model"
+  },
+  "link.item.label.Architecture": {
+    "message": "架构",
+    "description": "The label of footer link with label=Architecture linking to /architecture"
+  },
+  "link.item.label.RAG Pattern": {
+    "message": "RAG 模式",
+    "description": "The label of footer link with label=RAG Pattern linking to /rag-architecture"
+  },
+  "link.item.label.Integration": {
+    "message": "集成",
+    "description": "The label of footer link with label=Integration linking to /integration-patterns"
+  },
+  "link.item.label.Case Studies": {
+    "message": "案例研究",
+    "description": "The label of footer link with label=Case Studies linking to /case-studies"
+  },
+  "link.item.label.FAQ": {
+    "message": "常见问题",
+    "description": "The label of footer link with label=FAQ linking to /faq"
+  },
+  "copyright": {
+    "message": "版权所有 © 2026 AI 驱动客服指南。使用 Docusaurus 构建。",
+    "description": "The footer copyright"
+  }
+}
