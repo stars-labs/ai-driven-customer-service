@@ -6,10 +6,10 @@ const config = {
   tagline: 'Economic analysis, architecture patterns, and implementation guide for replacing traditional CS with AI',
 
 
-  url: 'https://hecoinfo.github.io',
+  url: 'https://stars-labs.github.io',
   baseUrl: '/ai-driven-customer-service/',
 
-  organizationName: 'hecoinfo',
+  organizationName: 'stars-labs',
   projectName: 'ai-driven-customer-service',
 
   onBrokenLinks: 'throw',
