@@ -33,6 +33,7 @@ const sidebars = {
       items: [
         'knowledge-base',
         'monitoring-eval',
+        'cs-org-training',
       ],
     },
     {

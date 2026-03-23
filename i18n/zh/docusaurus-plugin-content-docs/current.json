@@ -82,5 +82,9 @@
   "sidebar.tutorialSidebar.doc.FAQ": {
     "message": "常见问题",
     "description": "The label for doc 'FAQ' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.CS Org & Training": {
+    "message": "客服组织与培训",
+    "description": "The label for doc 'CS Org & Training' in sidebar 'tutorialSidebar'"
   }
 }
