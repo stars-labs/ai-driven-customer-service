@@ -24,7 +24,7 @@ LLM (大语言模型) 可能会生成看似合理但错误的信息。在 CS 中
 
 ```mermaid
 flowchart TB
-    subgraph Layer1["第 1 层：接地 (Grounding)"]
+    subgraph Layer1["第 1 层：接地（Grounding）"]
         L1A[RAG - 仅使用经过批准的文档]
         L1B[要求来源归属]
         L1C[不使用通用知识]
@@ -32,7 +32,7 @@ flowchart TB
 
     subgraph Layer2["第 2 层：验证"]
         L2A[置信度评分]
-        L2B[对照 KB (知识库) 进行事实核查]
+        L2B["对照 KB（知识库）进行事实核查"]
         L2C[一致性检查]
     end
 
@@ -44,7 +44,7 @@ flowchart TB
 
     subgraph Layer4["第 4 层：人工监督"]
         L4A[低置信度 → 转人工]
-        L4B[定期 QA (质量保证) 抽样]
+        L4B["定期 QA（质量保证）抽样"]
         L4C[客户反馈循环]
     end
 
@@ -297,7 +297,7 @@ flowchart TB
         S1[随机 5% 的 AI 响应]
         S2[所有低置信度响应]
         S3[所有升级转接的对话]
-        S4[所有负面 CSAT (客户满意度)]
+        S4["所有负面 CSAT（客户满意度）"]
     end
 
     subgraph Review["人工审查"]
@@ -308,7 +308,7 @@ flowchart TB
     end
 
     subgraph Feedback["反馈循环"]
-        F1[更新 KB (知识库)]
+        F1["更新 KB（知识库）"]
         F2[调整提示词]
         F3[如果需要，重新训练]
     end

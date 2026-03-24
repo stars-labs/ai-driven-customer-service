@@ -30,7 +30,7 @@ flowchart TB
 
     subgraph Systems["后端系统"]
         S1[Zendesk / Freshdesk]
-        S2[CRM (客户关系管理)]
+        S2["CRM（客户关系管理）"]
         S3[订单系统]
         S4[知识库]
     end

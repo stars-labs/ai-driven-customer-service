@@ -15,7 +15,7 @@ flowchart TB
         CH1[实时聊天]
         CH2[电子邮件]
         CH3[工单门户]
-        CH4[电话/短信]
+        CH4["电话/短信"]
         CH5[社交媒体]
     end
 
@@ -32,11 +32,11 @@ flowchart TB
     subgraph Human_Loop["人机协同"]
         H1[AI 辅助队列<br/>草稿审核]
         H2[升级队列<br/>复杂问题]
-        H3[主管队列<br/>投诉/VIP]
+        H3["主管队列<br/>投诉/VIP"]
     end
 
     subgraph Backend["后端系统"]
-        B1[工单系统<br/>Zendesk/Freshdesk]
+        B1["工单系统<br/>Zendesk/Freshdesk"]
         B2[CRM<br/>客户历史]
         B3[订单系统<br/>状态/支付]
         B4[知识库<br/>文档/FAQ]
@@ -131,7 +131,7 @@ flowchart TB
     subgraph Input["输入处理"]
         I1[消息摄取<br/>多渠道标准化]
         I2[语言检测<br/>i18n 路由]
-        I3[意图分类<br/>主题 + 操作]
+        I3["意图分类<br/>主题 + 操作"]
     end
 
     subgraph Retrieval["RAG 检索"]
@@ -141,7 +141,7 @@ flowchart TB
     end
 
     subgraph Generation["响应生成"]
-        G1[上下文组装<br/>系统提示词 + KB + 历史]
+        G1["上下文组装<br/>系统提示词 + KB + 历史"]
         G2[LLM 处理<br/>GPT-4 / Claude / Llama]
         G3[后处理<br/>语气、格式、合规性]
     end
@@ -179,8 +179,8 @@ flowchart TB
 
     subgraph Storage["向量存储"]
         V1[Pinecone / Weaviate / Qdrant]
-        V2[过滤搜索<br/>按产品 + 版本]
-        V3[混合搜索<br/>向量 + 关键词]
+        V2["过滤搜索<br/>按产品 + 版本"]
+        V3["混合搜索<br/>向量 + 关键词"]
     end
 
     Sources --> Processing
@@ -214,8 +214,8 @@ flowchart TB
 ```mermaid
 flowchart TB
     subgraph Data["数据保护"]
-        D1[PII (个人身份信息) 检测与脱敏]
-        D2[静态 + 传输中加密]
+        D1["PII（个人身份信息）检测与脱敏"]
+        D2["静态 + 传输中加密"]
         D3[数据保留政策]
     end
 
@@ -226,9 +226,9 @@ flowchart TB
     end
 
     subgraph Compliance["监管合规"]
-        C1[GDPR (通用数据保护条例) - 被遗忘权]
-        C2[CCPA (加州消费者隐私法案) - 数据访问]
-        C3[行业 - HIPAA/PCI (如果适用)]
+        C1["GDPR（通用数据保护条例） - 被遗忘权"]
+        C2["CCPA（加州消费者隐私法案） - 数据访问"]
+        C3["行业 - HIPAA/PCI（如果适用）"]
     end
 ```
 

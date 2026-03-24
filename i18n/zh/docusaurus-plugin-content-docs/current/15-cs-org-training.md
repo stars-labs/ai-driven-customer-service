@@ -13,11 +13,11 @@ title: 客服组织与培训
 
 ```mermaid
 flowchart TB
-    subgraph Frontline["一线客服 (Tier 1)"]
-        T1[AI + 人工<br/>高频简单问题]
+    subgraph Frontline["一线客服（Tier 1）"]
+        T1["AI + 人工<br/>高频简单问题"]
     end
 
-    subgraph Secondline["二线客服 (Tier 2)"]
+    subgraph Secondline["二线客服（Tier 2）"]
         T2[人工为主<br/>复杂但可模式化]
     end
 
@@ -171,14 +171,14 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph AutoQA["AI 自动质检 (100%)"]
+    subgraph AutoQA["AI 自动质检（100%）"]
         A1[准确性检查]
         A2[合规性检查]
-        A3[语气/品牌检查]
+        A3["语气/品牌检查"]
         A4[幻觉检测]
     end
 
-    subgraph ManualQA["人工深度质检 (5-10%)"]
+    subgraph ManualQA["人工深度质检（5-10%）"]
         M1[随机抽样]
         M2[低分抽样]
         M3[升级抽样]

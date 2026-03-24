@@ -88,8 +88,8 @@ title: 总体拥有成本模型
 flowchart TB
     subgraph Cumulative["5 年累计成本"]
         T[传统模型<br/>$3.89M]
-        H[混合模型<br/>$2.78M<br/>节省 $1.11M]
-        A[AI 优先模型<br/>$2.18M<br/>节省 $1.71M]
+        H["混合模型<br/>$2.78M<br/>节省 $1.11M"]
+        A["AI 优先模型<br/>$2.18M<br/>节省 $1.71M"]
     end
 
     T ---|节省 29%| H
