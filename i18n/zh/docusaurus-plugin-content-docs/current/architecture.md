@@ -216,13 +216,13 @@ flowchart TB
     subgraph Data["数据保护"]
         D1["PII（个人身份信息）检测与脱敏"]
         D2["静态 + 传输中加密"]
-        D3[数据保留政策]
+        D3["数据保留政策"]
     end
 
     subgraph Access["访问控制"]
-        A1[基于角色的访问控制]
-        A2[审计日志]
-        A3[API 密钥轮换]
+        A1["基于角色的访问控制"]
+        A2["审计日志"]
+        A3["API 密钥轮换"]
     end
 
     subgraph Compliance["监管合规"]
